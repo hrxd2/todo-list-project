@@ -1,6 +1,6 @@
 // index.js
 import "./styles.css"
-import { greeting } from "./greeting.js";
+import { greeting } from "./taskController.js";
 
 console.log(greeting);
 
