@@ -1,10 +1,11 @@
 // greeting.js
 export const greeting = "Hello, Odinite!";
 
-const taskArray = [];
-const projectArray = [];
 
 function tasksController() {
+
+  const taskArray = [];
+  const projectArray = [];
 
   function takeTodoInput(title, description, dueDate, priority, notes, checklist) {
 
