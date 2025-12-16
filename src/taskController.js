@@ -9,14 +9,23 @@ export default function tasksController() {
   function takeTodoInput(title, description, dueDate, priority, notes, checklist) {
 
     const uid = crypto.randomUUID();
+    let note = [];
+    let checks = [];
+
+    if(notes){
+      note = [...notes]
+    }
+    if(checklist){
+      checks = [...checklist];
+    }
 
     const taskObj = {
       title: title,
       description: description,
       dueDate: dueDate,
       priority: priority,
-      notes: [...notes],
-      checklist: [...checklist],
+      notes: note,
+      checklist: checks,
       uid: uid,
     }
 

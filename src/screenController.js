@@ -20,7 +20,7 @@ function newElem(elem, classText, textContent='', id=''){
 
 function populateTasks(obj){
 
-    const {title, description, dueDate, priority, notes, checklist, uid} = obj;
+    const {title, description, dueDate, priority, notes='', checklist='', uid} = obj;
 
     const section = newElem("section", "section");
     const taskHead = newElem("div", "task-head");
