@@ -25,9 +25,12 @@ function populateTasks(obj){
     const section = newElem("section", "section");
     const taskHead = newElem("div", "task-head");
     const titleH2 = newElem("h2", '', `${title}`);
+    const buttonsDiv = newElem("div", 'btn-div');
+    const dltBtn = newElem("button", 'delete-btn', 'x', uid);
     const isDoneCheckbox = newElem("input", '', '', uid);
 
-    taskHead.append(titleH2, isDoneCheckbox);
+    buttonsDiv.append(isDoneCheckbox, dltBtn );
+    taskHead.append(titleH2, buttonsDiv );
     section.append(taskHead);
 
     const mainTaskDiv = newElem("div", "task-main");

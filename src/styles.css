@@ -46,11 +46,36 @@ body{
 
 .task-head{
   display: flex;
-  align-items: flex-start;
+  align-items: start;
   justify-content: space-between;
 }
 .task-main{
   background: #5e5e5e;
   padding: 10px;
+  border-radius: 10px;
+  display: grid;
+  gap: 10px;
+}
+
+.checklist-div{
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  align-items: center;
+  justify-items: start;
+}
+.checklist-div > p{
+  grid-area: 1/1/1/3;    
+  padding-bottom: 7px;
+}
+
+.btn-div{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+.btn-div > button{
+  outline: none;
+  border: none;
+  font-size: 0.8rem;
   border-radius: 10px;
 }
