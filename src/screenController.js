@@ -18,8 +18,8 @@ function newElem(elem, classText, textContent='', id=''){
         item.type = 'checkbox';
         item.id = id;
     }
-    if(elem === 'button' && classText === 'project-title-button'){
-        item.id = id;
+    if(classText === 'project-title-button' || classText === 'project-title-div'){
+        item.dataset.uid = id;
     }
     return item;
 }
@@ -87,14 +87,15 @@ function populateTasks(obj){
 //aside render
 function populateProjects(projectArray){
 
-	const ul = newElem('ul', 'title-lists');
 	projectArray.forEach(obj => {
+        const titleDiv = newElem('div', 'project-title-div', '', `${obj.uid}`);
+
 		const titleButton = newElem('button', 'project-title-button', `${obj.title}`, `${obj.uid}`);
+        const delBtn = newElem('button', 'project-delete-button', 'x');
 
-		ul.append(titleButton);
+        titleDiv.append(titleButton, delBtn);
+        projectTitles.appendChild(titleDiv);
 	});
-
-	projectTitles.append(ul);
 }
 
 function initialRender(){

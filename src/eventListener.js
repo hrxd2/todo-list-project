@@ -1,4 +1,4 @@
-import { clearDisplay, initialRender, populateTasks } from "./screenController";
+import { clearDisplay, populateTasks } from "./screenController";
 import { getProjectArray, getTaskArray } from "./taskController";
 
 export default function asideListener(){
@@ -14,7 +14,8 @@ export default function asideListener(){
         if(e.target.classList.contains("project-title-button")){
             clearDisplay();
             const prjArray = getProjectArray();
-            const id = e.target.id;
+            const id = e.target.dataset.uid;
+            console.log(id);
                 prjArray.forEach(obj => {
                   if(obj.uid === id){
                     let task = obj.tasks;
