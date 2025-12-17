@@ -1,6 +1,9 @@
 
+export {clearDisplay, populateTasks, populateProjects, initialRender, newElem};
+import { getTaskArray, getProjectArray } from "./taskController";
+
 const main = document.querySelector(".main");
-export {clearDisplay, populateTasks};
+const projectTitles = document.querySelector(".project-titles");
 
 function clearDisplay(){
     main.textContent = '';
@@ -15,9 +18,13 @@ function newElem(elem, classText, textContent='', id=''){
         item.type = 'checkbox';
         item.id = id;
     }
+    if(elem === 'button' && classText === 'project-title-button'){
+        item.id = id;
+    }
     return item;
 }
 
+//main side render
 function populateTasks(obj){
 
     const {title, description, dueDate, priority, notes='', checklist='', uid} = obj;
@@ -75,4 +82,24 @@ function populateTasks(obj){
     section.append(mainTaskDiv);
 
     main.append(section);
+}
+
+//aside render
+function populateProjects(projectArray){
+
+	const ul = newElem('ul', 'title-lists');
+	projectArray.forEach(obj => {
+		const titleButton = newElem('button', 'project-title-button', `${obj.title}`, `${obj.uid}`);
+
+		ul.append(titleButton);
+	});
+
+	projectTitles.append(ul);
+}
+
+function initialRender(){
+    clearDisplay();
+    getTaskArray().forEach(item => populateTasks(item));
+    const projectArray = getProjectArray();
+    populateProjects(projectArray);
 }

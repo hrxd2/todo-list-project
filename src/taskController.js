@@ -1,94 +1,73 @@
-// greeting.js
+export {takeTodoInput, takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, getTaskArray, getProjectArray}
 
 
-export default function tasksController() {
+const taskArray = [];
+const projectArray = [];
 
-  const taskArray = [];
-  const projectArray = [];
+function takeTodoInput(title, description, dueDate, priority, notes=[], checklist=[]) {
 
-  function takeTodoInput(title, description, dueDate, priority, notes, checklist) {
+  const uid = crypto.randomUUID();
 
-    const uid = crypto.randomUUID();
-    let note = [];
-    let checks = [];
-
-    if(notes){
-      note = [...notes]
-    }
-    if(checklist){
-      checks = [...checklist];
-    }
-
-    const taskObj = {
-      title: title,
-      description: description,
-      dueDate: dueDate,
-      priority: priority,
-      notes: note,
-      checklist: checks,
-      uid: uid,
-    }
-
-    taskArray.push(taskObj);
-
-    //return taskObj;
-  };
-
-  function takeProjectInput(title){
-    const projectObj = {
-      title: title,
-      tasks: [],
-    }
-    
-    projectArray.push(projectObj);
-
-    //return projectObj;
-  };
-
-  function addTaskToProject(task, project){
-    taskArray.push(task);
-    project.tasks.push(task);
-    //bit confusion here, (what with multiple files);
-  };
-
-  function showProjects(){
-    projectArray.forEach(project => console.log(project));
+  const taskObj = {
+    title: title,
+    description: description,
+    dueDate: dueDate,
+    priority: priority,
+    notes: [...notes],
+    checklist: [...checklist],
+    uid: uid,
   }
 
-  function showTasks(){
-    taskArray.forEach(task => console.log(task));
-  }
+  taskArray.push(taskObj);
 
-  function checkTasks(){
-    if(!taskArray) return ;
-    showTasks();
-  }
-
-  function removeTasks(task) {
-    //remove the one with specific uid // use splice in array
-    //uid usage
-    console.log("removed ");
-  }
-
-  function getTaskArray(){
-    return taskArray;
-  }
-  function getProjectArray(){
-    return projectArray;
-  }
-
-  return {
-          takeTodoInput, 
-          takeProjectInput, 
-          addTaskToProject, 
-          showProjects, 
-          showTasks, 
-          checkTasks, 
-          removeTasks,
-          getTaskArray,
-          getProjectArray,
-  };
+  //return taskObj;
 };
+
+function takeProjectInput(title){
+  const uid = crypto.randomUUID();
+
+  const projectObj = {
+    title: title,
+    tasks: [],
+    uid: uid,
+  }
+  
+  projectArray.push(projectObj);
+
+  //return projectObj;
+};
+
+function addTaskToProject(task, project){
+  taskArray.push(task);
+  project.tasks.push(task);
+  //bit confusion here, (what with multiple files);
+};
+
+function showProjects(){
+  projectArray.forEach(project => console.log(project));
+}
+
+function showTasks(){
+  taskArray.forEach(task => console.log(task));
+}
+
+function checkTasks(){
+  if(!taskArray) return ;
+  showTasks();
+}
+
+function removeTasks(task) {
+  //remove the one with specific uid // use splice in array
+  //uid usage
+  console.log("removed ");
+}
+
+function getTaskArray(){
+  return taskArray;
+}
+function getProjectArray(){
+  return projectArray;
+}
 
 
 // todo.showTasks();
