@@ -18,7 +18,7 @@ function newElem(elem, classText, textContent='', id=''){
         item.type = 'checkbox';
         item.id = id;
     }
-    if(classText === 'project-title-button' || classText === 'project-title-div'){
+    if(classText === 'project-title-button' || classText === 'project-title-div'|| classText === 'delete-btn'){
         item.dataset.uid = id;
     }
     return item;

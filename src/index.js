@@ -1,9 +1,12 @@
 // index.js
 import "./styles.css"
+import "./modal.css"
+
 import { takeTodoInput,takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, getTaskArray, getProjectArray } from "./taskController.js";
 
 import { clearDisplay, populateTasks, populateProjects, initialRender } from "./screenController.js";
 import asideListener from "./eventListener.js";
+import { addTaskModal } from "./modals.js";
 
 
 
@@ -18,12 +21,14 @@ takeProjectInput("Sleep");
 const taskArray = getTaskArray();
 const projectArray = getProjectArray();
 
-addTaskToProject(taskArray[0], projectArray[0]);
-addTaskToProject(taskArray[3], projectArray[0]);
-addTaskToProject(taskArray[2], projectArray[1]);
+// addTaskToProject(taskArray[0], projectArray[0]);
+// addTaskToProject(taskArray[3], projectArray[0]);
+// addTaskToProject(taskArray[2], projectArray[1]);
 
 
 initialRender();
 showProjects();
 
 asideListener();
+
+addTaskModal();
