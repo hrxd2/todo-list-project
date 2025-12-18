@@ -1,6 +1,11 @@
-export {addTaskModal};
+export {showDialog, closeDialog};
 
-function addTaskModal(){
-    const dialog = document.querySelector(".dialog");
+const dialog = document.querySelector(".dialog");
+
+function showDialog(){
     dialog.showModal();
+}
+
+function closeDialog(){
+    dialog.close();
 }

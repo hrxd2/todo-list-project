@@ -6,7 +6,7 @@ import { takeTodoInput,takeProjectInput, addTaskToProject, showProjects, showTas
 
 import { clearDisplay, populateTasks, populateProjects, initialRender } from "./screenController.js";
 import asideListener from "./eventListener.js";
-import { addTaskModal } from "./modals.js";
+import { showDialog } from "./modals.js";
 
 
 
@@ -30,5 +30,3 @@ initialRender();
 showProjects();
 
 asideListener();
-
-addTaskModal();

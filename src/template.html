@@ -36,37 +36,39 @@
 
       <dialog class="dialog">
 
-        <div class="dialog-inputs">
+        <form action="#">
+          <div class="dialog-inputs">
 
-          <label for="title-label">Title: </label>
-          <input type="text" id="title-label">
-          <label for="description-box">Description: </label>
-          <textarea name="description-box" id="description-box"></textarea>
-          <label for="due-date">Due Date: </label>
-          <input type="date" id="due-date">
-          <label for="priority">Prioirty: </label>
+            <label for="title-label">Title: </label>
+            <input type="text" id="title-label" required>
+            <label for="description-box">Description: </label>
+            <textarea name="description-box" id="description-box" required></textarea>
+            <label for="due-date">Due Date: </label>
+            <input type="date" id="due-date" required>
+            <label for="priority">Prioirty: </label>
 
-          <select name="priority" id="priority">
-            <option value="null" disabled selected>Select</option>
-            <option value="High">High</option>
-            <option value="Low">Low</option>
-          </select>
+            <select name="priority" id="priority" required>
+              <option value="" disabled selected>Select</option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+            </select>
 
-          <label for="notes">Notes: </label>
-          <textarea name="notes" id="notes"></textarea>
+            <label for="notes">Notes: </label>
+            <textarea name="notes" id="notes"></textarea>
 
-          <label for="checklist">Checklist: </label>
-          <textarea name="checklist" id="checklist"></textarea>
+            <label for="checklist">Checklist: </label>
+            <textarea name="checklist" id="checklist"></textarea>
 
-        </div>
+          </div>
 
-        <div class="control-btns">
-          <button class="submit-task-btn">Submit</button>
-          <button class="modal-close">Close</button>
-        </div>
+          <div class="control-btns">
+            <button class="submit-task-btn" type="submit">Submit</button>
+            <button class="modal-close">Close</button>
+          </div>
+
+        </form>
 
       </dialog>
-
     </div>
 
 </body>

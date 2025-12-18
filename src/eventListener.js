@@ -1,3 +1,4 @@
+import { closeDialog, showDialog } from "./modals";
 import { clearDisplay, populateTasks } from "./screenController";
 import { getProjectArray, getTaskArray } from "./taskController";
 
@@ -5,6 +6,7 @@ export default function asideListener(){
 
     const aside = document.querySelector(".aside");
     const sectionTitle = document.querySelector(".section-title");
+    const dialog = document.querySelector(".dialog");
 
     aside.addEventListener("click", e => {
         if(e.target.classList.contains("all-tasks")){
@@ -29,7 +31,17 @@ export default function asideListener(){
             });
         };
 
+        if(e.target.classList.contains("add-button")){
+            showDialog();
+        }
+
         return ;
     });
+
+    dialog.addEventListener("click", e => {
+        if(e.target.classList.contains("modal-close")){
+            closeDialog();
+        }
+    })
     
 }

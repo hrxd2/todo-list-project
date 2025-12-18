@@ -111,7 +111,8 @@ body{
 }
 
 .project-title-div > button,
-.add-button{
+.add-button,
+.project-add-button{
   cursor: pointer;
 }
 
