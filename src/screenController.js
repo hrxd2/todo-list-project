@@ -91,9 +91,10 @@ function populateProjects(projectArray){
         const titleDiv = newElem('div', 'project-title-div', '', `${obj.uid}`);
 
 		const titleButton = newElem('button', 'project-title-button', `${obj.title}`, `${obj.uid}`);
+        const addBtn = newElem('button', 'projectTask-add-button', '+');
         const delBtn = newElem('button', 'project-delete-button', 'x');
 
-        titleDiv.append(titleButton, delBtn);
+        titleDiv.append(titleButton, addBtn, delBtn);
         projectTitles.appendChild(titleDiv);
 	});
 }
