@@ -4,7 +4,7 @@ dialog[open]{
   font-size: 1.25rem;
   font-family:  sans-serif;
   background: #bba88f;
-  border: none;
+  border: 1px solid black;
   color: white;
 }
 .dialog-inputs,
@@ -25,11 +25,14 @@ dialog[open]{
 }
 .dialog textarea,
 .dialog input,
-#priority{
+#priority,
+.project-title-input input{
   background: #bba88f;
 }
 #priority,
-#due-date{
+#due-date,
+.project-add input
+{
   border: none;
   outline: none;
   color: white;
@@ -46,4 +49,25 @@ dialog[open]{
   padding: 20px 50px;
   font-size: inherit;
   cursor: pointer;
+}
+
+.project-title-input{
+  display: none;
+}
+
+.project-add  input{
+  border-bottom: 1px solid;
+  background: #d0bb9f;
+  font-size: 1rem; 
+}
+.project-add button{
+  border: none;
+  font-size: inherit;
+  cursor: pointer;
+  border-radius: none;
+  background: beige;
+  padding: 3px 15px;
+}
+.project-add form{
+  display: flex;
 }

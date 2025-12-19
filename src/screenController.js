@@ -87,6 +87,8 @@ function populateTasks(obj){
 //aside render
 function populateProjects(projectArray){
 
+    projectTitles.textContent = '';
+
 	projectArray.forEach(obj => {
         const titleDiv = newElem('div', 'project-title-div', '', `${obj.uid}`);
 

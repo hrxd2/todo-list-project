@@ -1,12 +1,15 @@
 import { closeDialog, showDialog } from "./modals";
-import { clearDisplay, populateTasks } from "./screenController";
-import { getProjectArray, getTaskArray } from "./taskController";
+import { clearDisplay, populateProjects, populateTasks } from "./screenController";
+import { getProjectArray, getTaskArray, takeProjectInput } from "./taskController";
+
+const projectArray = getProjectArray();
 
 export default function asideListener(){
 
     const aside = document.querySelector(".aside");
     const sectionTitle = document.querySelector(".section-title");
     const dialog = document.querySelector(".dialog");
+    const projectAdd = document.querySelector(".project-add");
 
     aside.addEventListener("click", e => {
         if(e.target.classList.contains("all-tasks")){
@@ -22,20 +25,34 @@ export default function asideListener(){
             sectionTitle.textContent = textValue;
 
             const id = e.target.dataset.uid;
-            console.log(id);
                 prjArray.forEach(obj => {
                   if(obj.uid === id){
                     let task = obj.tasks;
                     task.forEach(obj => populateTasks(obj));
                   }
             });
+            console.log(prjArray);
         };
 
         if(e.target.classList.contains("add-button")){
             showDialog();
         }
 
-        return ;
+        if(e.target.classList.contains("project-add-button")){
+            projectAdd.classList.toggle("project-title-input");
+        }
+
+        if(e.target.classList.contains("project-title-add-btn")){
+            e.preventDefault();
+            projectAdd.classList.toggle("project-title-input");
+            const inputVal = document.querySelector("#project-title-input").value;
+            takeProjectInput(inputVal);
+            populateProjects(projectArray);
+        }
+
+        if(e.target.classList.contains("projectTask-add-button")){
+            showDialog();
+        }
     });
 
     dialog.addEventListener("click", e => {

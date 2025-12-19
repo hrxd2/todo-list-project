@@ -18,8 +18,15 @@ body{
 .project-titles,
 .project-title-div,
 .section,
-.aside-buttons{
+.aside-buttons,
+.section-title,
+.header{
   display: grid;
+}
+
+.section-title,
+.header{
+  align-items: center;
 }
 
 .main,
