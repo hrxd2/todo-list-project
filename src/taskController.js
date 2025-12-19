@@ -56,10 +56,13 @@ function checkTasks(){
   showTasks();
 }
 
-function removeTasks(task) {
-  //remove the one with specific uid // use splice in array
-  //uid usage
-  console.log("removed ");
+function removeTasks(id) {
+  taskArray.forEach(obj => {
+    if(obj.uid === id){
+      const index = taskArray.indexOf(obj);
+      taskArray.splice(index, 1);
+    }
+  })
 }
 
 function removeProject(id){

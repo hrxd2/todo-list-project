@@ -5,7 +5,7 @@ import "./modal.css"
 import { takeTodoInput,takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, getTaskArray, getProjectArray } from "./taskController.js";
 
 import { clearDisplay, populateTasks, populateProjects, initialRender } from "./screenController.js";
-import asideListener from "./eventListener.js";
+import {asideListener, mainListener } from "./eventListener.js";
 
 
 
@@ -17,8 +17,8 @@ takeTodoInput("Sleep", "Sleep for 8 hours min", "15/02/2026", "Low", ["deep brea
 takeProjectInput("Swimming");
 takeProjectInput("Sleep");
 
-const taskArray = getTaskArray();
-const projectArray = getProjectArray();
+// const taskArray = getTaskArray();
+// const projectArray = getProjectArray();
 
 // addTaskToProject(taskArray[0], projectArray[0]);
 // addTaskToProject(taskArray[3], projectArray[0]);
@@ -29,3 +29,4 @@ initialRender();
 showProjects();
 
 asideListener();
+mainListener();
