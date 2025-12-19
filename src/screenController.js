@@ -7,7 +7,7 @@ const projectTitles = document.querySelector(".project-titles");
 
 function clearDisplay(){
     main.textContent = '';
-}
+};
 
 function newElem(elem, classText, textContent='', id=''){
     const item = document.createElement(elem);
@@ -22,7 +22,7 @@ function newElem(elem, classText, textContent='', id=''){
         item.dataset.uid = id;
     }
     return item;
-}
+};
 
 //main side render
 function populateTasks(obj){
@@ -82,7 +82,7 @@ function populateTasks(obj){
     section.append(mainTaskDiv);
 
     main.append(section);
-}
+};
 
 //aside render
 function populateProjects(projectArray){
@@ -99,11 +99,11 @@ function populateProjects(projectArray){
         titleDiv.append(titleButton, addBtn, delBtn);
         projectTitles.appendChild(titleDiv);
 	});
-}
+};
 
 function initialRender(){
     clearDisplay();
     getTaskArray().forEach(item => populateTasks(item));
     const projectArray = getProjectArray();
     populateProjects(projectArray);
-}
+};

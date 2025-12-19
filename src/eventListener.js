@@ -1,10 +1,11 @@
-import { closeDialog, showDialog } from "./modals";
+import { closeDialog, collectData, showDialog } from "./modals";
 import { clearDisplay, populateProjects, populateTasks } from "./screenController";
 import { getProjectArray, getTaskArray, removeProject, removeTasks, takeProjectInput } from "./taskController";
 
-export {mainListener, asideListener }
+export {mainListener, asideListener, dialogListener}
 
 const projectArray = getProjectArray();
+const form = document.querySelector("form");
 
 function mainListener(){
 
@@ -18,13 +19,12 @@ function mainListener(){
             getTaskArray().forEach(item => populateTasks(item));
         }
     })
-}
+};
 
 function asideListener(){
 
     const aside = document.querySelector(".aside");
     const sectionTitle = document.querySelector(".section-title");
-    const dialog = document.querySelector(".dialog");
     const projectAdd = document.querySelector(".project-add");
 
     aside.addEventListener("click", e => {
@@ -59,7 +59,6 @@ function asideListener(){
         }
 
         if(e.target.classList.contains("project-title-add-btn")){
-            e.preventDefault();
             const inputVal = document.querySelector("#project-title-input").value;
 
             if(!inputVal) return;
@@ -81,10 +80,27 @@ function asideListener(){
 
     });
 
+
+};
+
+function dialogListener(){
+    const dialog = document.querySelector(".dialog");
+
     dialog.addEventListener("click", e => {
         if(e.target.classList.contains("modal-close")){
             closeDialog();
         }
+        
+        if(e.target.classList.contains("submit-task-btn")){
+            //function to takeinput
+
+            const res = collectData();
+            if(!res)return;
+
+            console.log(res);
+            closeDialog();
+        }
     })
 
-}
+
+};

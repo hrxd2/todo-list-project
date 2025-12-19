@@ -5,7 +5,7 @@ import "./modal.css"
 import { takeTodoInput,takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, getTaskArray, getProjectArray } from "./taskController.js";
 
 import { clearDisplay, populateTasks, populateProjects, initialRender } from "./screenController.js";
-import {asideListener, mainListener } from "./eventListener.js";
+import {asideListener, dialogListener, mainListener } from "./eventListener.js";
 
 
 
@@ -30,3 +30,4 @@ showProjects();
 
 asideListener();
 mainListener();
+dialogListener();

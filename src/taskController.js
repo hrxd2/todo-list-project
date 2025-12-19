@@ -20,7 +20,9 @@ function takeTodoInput(title, description, dueDate, priority, notes=[], checklis
 
   taskArray.push(taskObj);
 
-  //return taskObj;
+  //can use class here.
+  //doubts on uid and taking optional value
+
 };
 
 function takeProjectInput(title){
