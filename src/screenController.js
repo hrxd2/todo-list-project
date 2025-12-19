@@ -18,7 +18,7 @@ function newElem(elem, classText, textContent='', id=''){
         item.type = 'checkbox';
         item.id = id;
     }
-    if(classText === 'project-title-button' || classText === 'project-title-div'|| classText === 'delete-btn'){
+    if(classText === 'project-title-button' || classText === 'project-title-div'|| classText === 'delete-btn'|| classText === 'project-delete-button'){
         item.dataset.uid = id;
     }
     return item;
@@ -94,7 +94,7 @@ function populateProjects(projectArray){
 
 		const titleButton = newElem('button', 'project-title-button', `${obj.title}`, `${obj.uid}`);
         const addBtn = newElem('button', 'projectTask-add-button', '+');
-        const delBtn = newElem('button', 'project-delete-button', 'x');
+        const delBtn = newElem('button', 'project-delete-button', 'x', `${obj.uid}`);
 
         titleDiv.append(titleButton, addBtn, delBtn);
         projectTitles.appendChild(titleDiv);

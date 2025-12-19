@@ -1,6 +1,6 @@
 import { closeDialog, showDialog } from "./modals";
 import { clearDisplay, populateProjects, populateTasks } from "./screenController";
-import { getProjectArray, getTaskArray, takeProjectInput } from "./taskController";
+import { getProjectArray, getTaskArray, removeProject, takeProjectInput } from "./taskController";
 
 const projectArray = getProjectArray();
 
@@ -52,6 +52,12 @@ export default function asideListener(){
 
         if(e.target.classList.contains("projectTask-add-button")){
             showDialog();
+        }
+
+        if(e.target.classList.contains('project-delete-button')){
+            const id = e.target.dataset.uid;
+            removeProject(id);
+            populateProjects(projectArray);
         }
     });
 

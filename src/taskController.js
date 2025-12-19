@@ -1,4 +1,4 @@
-export {takeTodoInput, takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, getTaskArray, getProjectArray}
+export {takeTodoInput, takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, removeProject, getTaskArray, getProjectArray}
 
 
 const taskArray = [];
@@ -60,6 +60,15 @@ function removeTasks(task) {
   //remove the one with specific uid // use splice in array
   //uid usage
   console.log("removed ");
+}
+
+function removeProject(id){
+  projectArray.forEach(obj => {
+   if(obj.uid === id){
+    const index = projectArray.indexOf(obj);
+    projectArray.splice(index, 1);
+   } 
+  });
 }
 
 function getTaskArray(){
