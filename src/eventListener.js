@@ -6,7 +6,6 @@ import { getProjectArray, getTaskArray, removeProject, removeTasks, takeProjectI
 export {mainListener, asideListener, dialogListener}
 
 const projectArray = getProjectArray();
-const form = document.querySelector("form");
 
 function mainListener(){
 
@@ -29,6 +28,7 @@ function asideListener(){
     const projectAdd = document.querySelector(".project-add");
 
     aside.addEventListener("click", e => {
+
         if(e.target.classList.contains("all-tasks")){
             clearDisplay();
             sectionTitle.textContent = 'All Tasks';

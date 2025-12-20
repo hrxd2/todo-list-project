@@ -2,16 +2,42 @@
 import "./styles.css"
 import "./modal.css"
 
-import { takeTodoInput,takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, getTaskArray, getProjectArray } from "./taskController.js";
+import { takeTodoInput,takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, getTaskArray, getProjectArray, Task } from "./taskController.js";
 
 import { clearDisplay, populateTasks, populateProjects, initialRender } from "./screenController.js";
 import {asideListener, dialogListener, mainListener } from "./eventListener.js";
 
+//sample inputs;
+const task1 = new Task({
+title: "Workout", 
+description: "i have to workout 2 hours today", 
+dueDate: "22/02/2022", 
+priority: "High", 
+notes: ["planks", "extension" , "leg stretch" , "cat frog etc"], 
+checklist: ["2hour", "1 liter water", "15min rest", "protein intake"],
+});
 
+const task2 = new Task({
+title: "Coding session", 
+description: "should code for 4 hours this evening", 
+dueDate: "22/01/2026", 
+priority: "Medium", 
+notes: ["Javascript", "dsa" , "sys design"], 
+checklist: ["2hour", "1 liter water", "15min rest", "meditation break"],
+});
 
-takeTodoInput("Workout", "i have to workout 2 hours today", "22/02/2022", "High", ["planks", "extension" , "leg stretch" , "cat frog etc"], ["2hour", "1 liter water", "15min rest", "protein intake"]);
-takeTodoInput("Coding session", "should code for 4 hours this evening", "22/01/2026", "Medium", ["Javascript", "dsa" , "sys design"], ["2hour", "1 liter water", "15min rest", "meditation break"]);
-takeTodoInput("Sleep", "Sleep for 8 hours min", "15/02/2026", "Low", ["deep breath and deep sleep"], ["take medicine", "no phone in bed" , "quit screen min 1 hour before"]);
+const task3 = new Task({
+title: "Sleep", 
+description: "Sleep for 8 hours min", 
+dueDate: "15/02/2026", 
+priority: "Low", 
+notes: ["deep breath and deep sleep"], 
+checklist: ["take medicine", "no phone in bed" , "quit screen min 1 hour before"],
+});
+
+takeTodoInput(task1);
+takeTodoInput(task2);
+takeTodoInput(task3);
 
 
 takeProjectInput("Swimming");

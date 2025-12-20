@@ -1,27 +1,29 @@
-export {takeTodoInput, takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, removeProject, getTaskArray, getProjectArray}
+export {Task, takeTodoInput, takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, removeProject, getTaskArray, getProjectArray}
 
 
 const taskArray = [];
 const projectArray = [];
 
-function takeTodoInput(title, description, dueDate, priority, notes=[], checklist=[]) {
+class Task {
+  constructor(obj){
 
-  const uid = crypto.randomUUID();
+    const {title, description, dueDate, priority, notes='', checklist=''} = obj;
 
-  const taskObj = {
-    title: title,
-    description: description,
-    dueDate: dueDate,
-    priority: priority,
-    notes: [...notes],
-    checklist: [...checklist],
-    uid: uid,
+    this.title = title;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.notes = notes;
+    this.checklist = checklist;
+
+    const uid = crypto.randomUUID();
+    this.uid = uid;
   }
+}
 
-  taskArray.push(taskObj);
+function takeTodoInput(obj){
 
-  //can use class here.
-  //doubts on uid and taking optional value
+  taskArray.push(obj);
 
 };
 
