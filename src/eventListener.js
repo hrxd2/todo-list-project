@@ -1,5 +1,5 @@
 import { closeDialog, collectData, showDialog } from "./modals";
-import { allTaskDialog } from "./populateDialog";
+import { allTaskDialog, projectTaskDialog } from "./populateDialog";
 import { clearDisplay, populateProjects, populateTasks } from "./screenController";
 import { getProjectArray, getTaskArray, removeProject, removeTasks, takeProjectInput } from "./taskController";
 
@@ -71,6 +71,7 @@ function asideListener(){
         }
 
         if(e.target.classList.contains("projectTask-add-button")){
+            projectTaskDialog();
             showDialog();
         }
 
@@ -94,7 +95,17 @@ function dialogListener(){
         }
         
         if(e.target.classList.contains("submit-task-btn")){
-            //function to takeinput
+            console.log('alltasks out')
+
+            const res = collectData();
+            if(!res)return;
+
+            console.log(res);
+            closeDialog();
+        }
+
+        if(e.target.classList.contains("submit-project-task-btn")){
+            console.log('projecttask out');
 
             const res = collectData();
             if(!res)return;
@@ -103,6 +114,5 @@ function dialogListener(){
             closeDialog();
         }
     })
-
 
 };

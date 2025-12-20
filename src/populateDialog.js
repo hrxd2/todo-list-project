@@ -48,7 +48,7 @@ function newElem(elem, classText, textContent='', id='', forText='', type=''){
     return item;
 };
 
-function allTaskDialog(){
+function renderFields(){
     const dialogInputs = newElem("div", "dialog-inputs");
 
     const titleLabel = newElem("label", '', 'Title: ', '', 'title-label');
@@ -67,13 +67,25 @@ function allTaskDialog(){
     dialogInputs.append(titleLabel, titleInput, descriptionLable, descriptionText, dateLabel, dateInput, priorityLabel, selectMenu, noteLabel, noteArea, chekListLabel, checkArea);
     form.appendChild(dialogInputs);
 
+}
+
+function renderButton(submitButtonClass){
     const buttonDiv = newElem("div", 'control-btns',);
-    const subButton = newElem("button", 'submit-task-btn', 'Submit', '', '', 'submit');
+    const subButton = newElem("button", submitButtonClass, 'Submit', '', '', 'submit');
     const closeButton = newElem("button", 'modal-close', 'Close');
     buttonDiv.append(subButton, closeButton);
     form.append(buttonDiv);
 }
 
+function allTaskDialog(){
+    form.textContent = '';
+    renderFields();
+    renderButton("submit-task-btn");
+}
+
 function projectTaskDialog(){
+    form.textContent = '';
+    renderFields();
+    renderButton("submit-project-task-btn");
 
 }

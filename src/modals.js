@@ -11,7 +11,7 @@ function closeDialog(){
 }
 
 function collectData(){
-    console.log("take input");
+
     const title = document.querySelector("#title-label").value;
     const description = document.querySelector("#description-box").value;
     const dueDate = document.querySelector("#due-date").value;
