@@ -1,7 +1,7 @@
 import { closeDialog, collectData, showDialog } from "./modals";
 import { allTaskDialog, projectTaskDialog } from "./populateDialog";
-import { clearDisplay, populateProjects, populateTasks } from "./screenController";
-import { getProjectArray, getTaskArray, removeProject, removeTasks, takeProjectInput } from "./taskController";
+import { clearDisplay, populateProjects, populateTasks, updateMain } from "./screenController";
+import { getProjectArray, getTaskArray, removeProject, removeTasks, takeProjectInput, takeTodoInput, Task } from "./taskController";
 
 export {mainListener, asideListener, dialogListener}
 
@@ -16,7 +16,8 @@ function mainListener(){
             console.log(id);
             removeTasks(id);
             clearDisplay();            
-            getTaskArray().forEach(item => populateTasks(item));
+            updateMain();
+            // getTaskArray().forEach(item => populateTasks(item));
         }
     })
 };
@@ -48,7 +49,7 @@ function asideListener(){
                     task.forEach(obj => populateTasks(obj));
                   }
             });
-            console.log(prjArray);
+            console.log("prjAray" + prjArray);
         };
 
         if(e.target.classList.contains("add-button")){
@@ -100,6 +101,9 @@ function dialogListener(){
             const res = collectData();
             if(!res)return;
 
+            takeTodoInput(res);
+            clearDisplay();
+            updateMain();
             console.log(res);
             closeDialog();
         }
@@ -110,6 +114,8 @@ function dialogListener(){
             const res = collectData();
             if(!res)return;
 
+            // clearDisplay();
+            // updateMain();
             console.log(res);
             closeDialog();
         }

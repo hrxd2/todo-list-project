@@ -1,5 +1,5 @@
 
-export {clearDisplay, populateTasks, populateProjects, initialRender, newElem};
+export {clearDisplay, populateTasks, populateProjects, updateMain, initialRender, newElem};
 import { getTaskArray, getProjectArray } from "./taskController";
 
 const main = document.querySelector(".main");
@@ -27,7 +27,7 @@ function newElem(elem, classText, textContent='', id=''){
 //main side render
 function populateTasks(obj){
 
-    const {title, description, dueDate, priority, notes='', checklist='', uid} = obj;
+    const {title, description, dueDate, priority, notes=[], checklist=[], uid} = obj;
 
     const section = newElem("section", "section");
     const taskHead = newElem("div", "task-head");
@@ -41,13 +41,13 @@ function populateTasks(obj){
     section.append(taskHead);
 
     const mainTaskDiv = newElem("div", "task-main");
-    const descriptionPara = newElem("code", 'description-text', `${description}`);
+    const descriptionPara = newElem("code", 'description-text', `> ${description}`);
     const datePara = newElem("p", 'date', `Due: ${dueDate}`);
     const priorityPara = newElem("p", 'priority', `Priority: ${priority}`);
 
     mainTaskDiv.append(descriptionPara, datePara, priorityPara);
 
-    if(notes){
+    if(notes.length !== 1){
         const noteDiv = newElem('div', 'notes-div');
         const noteText = newElem('p', 'note-text', 'Notes: ');
 
@@ -60,7 +60,7 @@ function populateTasks(obj){
         noteDiv.append(noteText, notesUl);
         mainTaskDiv.append(noteDiv);
     }
-    if(checklist){
+    if(checklist.length !== 1){
         const checkDiv = newElem("div", 'checklist-div');
         const checklistText = newElem('p', 'checklist-text', 'Checklists: ');
         checkDiv.appendChild(checklistText);
@@ -101,9 +101,14 @@ function populateProjects(projectArray){
 	});
 };
 
+function updateMain(){
+    console.log(getTaskArray());
+    getTaskArray().forEach(item => populateTasks(item));
+}
+
 function initialRender(){
     clearDisplay();
-    getTaskArray().forEach(item => populateTasks(item));
+    updateMain();
     const projectArray = getProjectArray();
     populateProjects(projectArray);
 };

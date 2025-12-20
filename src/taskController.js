@@ -7,7 +7,7 @@ const projectArray = [];
 class Task {
   constructor(obj){
 
-    const {title, description, dueDate, priority, notes='', checklist=''} = obj;
+    const {title, description, dueDate, priority, notes=[], checklist=[]} = obj;
 
     this.title = title;
     this.description = description;
@@ -23,8 +23,8 @@ class Task {
 
 function takeTodoInput(obj){
 
-  taskArray.push(obj);
-
+  const newTask = new Task(obj);
+  taskArray.push(newTask);
 };
 
 function takeProjectInput(title){
