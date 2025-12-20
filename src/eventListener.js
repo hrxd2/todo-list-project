@@ -1,4 +1,5 @@
 import { closeDialog, collectData, showDialog } from "./modals";
+import { allTaskDialog } from "./populateDialog";
 import { clearDisplay, populateProjects, populateTasks } from "./screenController";
 import { getProjectArray, getTaskArray, removeProject, removeTasks, takeProjectInput } from "./taskController";
 
@@ -51,6 +52,7 @@ function asideListener(){
         };
 
         if(e.target.classList.contains("add-button")){
+            allTaskDialog();
             showDialog();
         }
 
