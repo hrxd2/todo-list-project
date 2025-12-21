@@ -6,6 +6,7 @@ import { getProjectArray, getTaskArray, removeProject, removeTasks, showProjects
 export {mainListener, asideListener, dialogListener, updateMain}
 
 const projectArray = getProjectArray();
+const taskArray = getTaskArray();
 const sectionTitle = document.querySelector(".section-title");
 
 // main side render of all tasks.
@@ -43,6 +44,7 @@ function mainListener(){
             console.log(id);
             removeTasks(id);
             clearDisplay();            
+            // populateTasks(taskArray);
             updateMain();
         }
     })

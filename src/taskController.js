@@ -1,4 +1,4 @@
-export {Task, takeTodoInput, takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, removeProject, getTaskArray, getProjectArray}
+export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, getTaskArray, getProjectArray}
 
 
 const taskArray = [];
@@ -51,12 +51,6 @@ function takeProjectInput(title){
   projectArray.push(newProject);
 };
 
-function addTaskToProject(task, project){
-  // taskArray.push(task);
-  project.tasks.push(task);
-  //bit confusion here, (what with multiple files);
-};
-
 function showProjects(){
   projectArray.forEach(project => console.log(project));
 }
@@ -71,6 +65,11 @@ function checkTasks(){
 }
 
 function removeTasks(id) {
+  //
+  //should moidfy this function to remove the tasks if it is on 
+  //project arrays, now this one wont splice the task from projectarray
+  //also update the logic for all tasks to get all from projects too
+  // 
   taskArray.forEach(obj => {
     if(obj.uid === id){
       const index = taskArray.indexOf(obj);

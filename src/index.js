@@ -2,7 +2,7 @@
 import "./styles.css"
 import "./modal.css"
 
-import { takeTodoInput,takeProjectInput, addTaskToProject, showProjects, showTasks, checkTasks, removeTasks, getTaskArray, getProjectArray, Task } from "./taskController.js";
+import { takeTodoInput,takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, getTaskArray, getProjectArray, Task } from "./taskController.js";
 
 import { clearDisplay, populateTasks, populateProjects, initialRender } from "./screenController.js";
 import {asideListener, dialogListener, mainListener } from "./eventListener.js";
