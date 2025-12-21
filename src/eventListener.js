@@ -1,12 +1,11 @@
 import { closeDialog, collectData, showDialog } from "./modals";
 import { allTaskDialog, projectTaskDialog } from "./populateDialog";
 import { clearDisplay, populateProjects, populateTasks} from "./screenController";
-import { getProjectArray, getTaskArray, removeProject, removeTasks, showProjects, takeProjectInput, takeTodoInput, Task } from "./taskController";
+import { getProjectArray, getTaskArray, removeProject, removeTasks, showProjects, takeProjectInput, takeTodoInput} from "./taskController";
 
 export {mainListener, asideListener, dialogListener, updateMain}
 
 const projectArray = getProjectArray();
-const taskArray = getTaskArray();
 const sectionTitle = document.querySelector(".section-title");
 
 // main side render of all tasks.
@@ -45,7 +44,19 @@ function mainListener(){
             removeTasks(id);
             clearDisplay();            
             // populateTasks(taskArray);
+            //some problem here, 
+            //when deleted from projects it will render main tasks
+            //should fix that
+            //maybe  the class of delte button i guess
+            //shouldn't do updatemain with projectTasks
+            //only with all tasks
+            //thats where the updateMain comes in
+
             updateMain();
+        }
+
+        if(e.target.classList.contains("projectTask-del-btn")){
+            console.log("clicked");
         }
     })
 };

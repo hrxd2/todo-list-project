@@ -1,5 +1,4 @@
-export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, getTaskArray, getProjectArray}
-
+export {takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, getTaskArray, getProjectArray}
 
 const taskArray = [];
 const projectArray = [];
@@ -41,7 +40,8 @@ class ProjectTask{
   }
    
   addTasks(obj){
-    this.tasks.push(obj);
+    const task = new Task(obj);
+    this.tasks.push(task);
   }
 }
 
