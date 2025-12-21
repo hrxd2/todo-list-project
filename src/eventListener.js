@@ -1,11 +1,38 @@
 import { closeDialog, collectData, showDialog } from "./modals";
 import { allTaskDialog, projectTaskDialog } from "./populateDialog";
-import { clearDisplay, populateProjects, populateTasks, updateMain } from "./screenController";
-import { getProjectArray, getTaskArray, removeProject, removeTasks, takeProjectInput, takeTodoInput, Task } from "./taskController";
+import { clearDisplay, populateProjects, populateTasks} from "./screenController";
+import { getProjectArray, getTaskArray, removeProject, removeTasks, showProjects, takeProjectInput, takeTodoInput, Task } from "./taskController";
 
-export {mainListener, asideListener, dialogListener}
+export {mainListener, asideListener, dialogListener, updateMain}
 
 const projectArray = getProjectArray();
+const sectionTitle = document.querySelector(".section-title");
+
+// main side render of all tasks.
+function updateMain(){
+    console.log(getTaskArray());
+    sectionTitle.textContent = 'All Tasks';
+    getTaskArray().forEach(item => populateTasks(item));
+}
+
+//main side render of project tasks.
+function projectRender(e){
+
+    clearDisplay();
+    const prjArray = getProjectArray();
+
+    const id = e.target.dataset.uid;
+        prjArray.forEach(obj => {
+            if(obj.uid === id){
+            
+            const textValue = obj.getTitle();
+            sectionTitle.textContent = textValue;
+
+            let task = obj.tasks;
+            task.forEach(obj => populateTasks(obj));
+            }
+    });
+}
 
 function mainListener(){
 
@@ -17,7 +44,6 @@ function mainListener(){
             removeTasks(id);
             clearDisplay();            
             updateMain();
-            // getTaskArray().forEach(item => populateTasks(item));
         }
     })
 };
@@ -25,7 +51,6 @@ function mainListener(){
 function asideListener(){
 
     const aside = document.querySelector(".aside");
-    const sectionTitle = document.querySelector(".section-title");
     const projectAdd = document.querySelector(".project-add");
 
     aside.addEventListener("click", e => {
@@ -33,23 +58,12 @@ function asideListener(){
         if(e.target.classList.contains("all-tasks")){
             clearDisplay();
             sectionTitle.textContent = 'All Tasks';
-            getTaskArray().forEach(item => populateTasks(item));
+            updateMain()
         };
 
-        if(e.target.classList.contains("project-title-button")){
-            clearDisplay();
-            const prjArray = getProjectArray();
-            const textValue = e.target.textContent;
-            sectionTitle.textContent = textValue;
 
-            const id = e.target.dataset.uid;
-                prjArray.forEach(obj => {
-                  if(obj.uid === id){
-                    let task = obj.tasks;
-                    task.forEach(obj => populateTasks(obj));
-                  }
-            });
-            console.log("prjAray" + prjArray);
+        if(e.target.classList.contains("project-title-button")){
+            projectRender(e);
         };
 
         if(e.target.classList.contains("add-button")){
@@ -68,11 +82,13 @@ function asideListener(){
 
             takeProjectInput(inputVal);
             populateProjects(projectArray);
+            showProjects();
             projectAdd.classList.toggle("project-title-input");
         }
 
         if(e.target.classList.contains("projectTask-add-button")){
-            projectTaskDialog();
+            const id = e.target.dataset.uid;
+            projectTaskDialog(id);
             showDialog();
         }
 
@@ -80,6 +96,7 @@ function asideListener(){
             const id = e.target.dataset.uid;
             removeProject(id);
             populateProjects(projectArray);
+            updateMain();
         }
 
     });
@@ -111,12 +128,21 @@ function dialogListener(){
         if(e.target.classList.contains("submit-project-task-btn")){
             console.log('projecttask out');
 
+            const id = e.target.dataset.uid;
+
             const res = collectData();
             if(!res)return;
 
+            projectArray.forEach(item => {
+                if(item.uid === id){
+                    item.addTasks(res);
+                }
+            });
+            projectRender(e);
+            showProjects();
             // clearDisplay();
             // updateMain();
-            console.log(res);
+            //console.log(res);
             closeDialog();
         }
     })

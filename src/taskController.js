@@ -27,22 +27,32 @@ function takeTodoInput(obj){
   taskArray.push(newTask);
 };
 
-function takeProjectInput(title){
-  const uid = crypto.randomUUID();
+class ProjectTask{
+  constructor(title){
+    this.title = title;
+    this.tasks = [];
 
-  const projectObj = {
-    title: title,
-    tasks: [],
-    uid: uid,
+    const uid = crypto.randomUUID();
+    this.uid = uid;
   }
-  
-  projectArray.push(projectObj);
 
-  //return projectObj;
+  getTitle(){
+    return this.title;
+  }
+   
+  addTasks(obj){
+    this.tasks.push(obj);
+  }
+}
+
+function takeProjectInput(title){
+
+  const newProject = new ProjectTask(title);
+  projectArray.push(newProject);
 };
 
 function addTaskToProject(task, project){
-  taskArray.push(task);
+  // taskArray.push(task);
   project.tasks.push(task);
   //bit confusion here, (what with multiple files);
 };
@@ -85,13 +95,3 @@ function getProjectArray(){
   return projectArray;
 }
 
-
-// todo.showTasks();
-// todo.takeProjectInput("Workout");
-// todo.takeProjectInput("Sleep");
-
-// //using hardcoded values, change it accordingly
-// todo.addTaskToProject(todo.taskArray[0], todo.projectArray[0]);
-// todo.addTaskToProject(todo.taskArray[2], todo.projectArray[1]);
-
-// todo.showProjects();

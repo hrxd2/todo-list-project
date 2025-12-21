@@ -44,6 +44,9 @@ function newElem(elem, classText, textContent='', id='', forText='', type=''){
 
         item.append(highOption, lowOption);
     }
+    if(elem === 'button' && classText === 'submit-project-task-btn'){
+        item.dataset.uid = id;
+    }
 
     return item;
 };
@@ -69,9 +72,9 @@ function renderFields(){
 
 }
 
-function renderButton(submitButtonClass){
+function renderButton(submitButtonClass, id=''){
     const buttonDiv = newElem("div", 'control-btns',);
-    const subButton = newElem("button", submitButtonClass, 'Submit', '', '', 'submit');
+    const subButton = newElem("button", submitButtonClass, 'Submit', id, '', 'submit');
     const closeButton = newElem("button", 'modal-close', 'Close');
     buttonDiv.append(subButton, closeButton);
     form.append(buttonDiv);
@@ -83,9 +86,9 @@ function allTaskDialog(){
     renderButton("submit-task-btn");
 }
 
-function projectTaskDialog(){
+function projectTaskDialog(id){
     form.textContent = '';
     renderFields();
-    renderButton("submit-project-task-btn");
+    renderButton("submit-project-task-btn", id);
 
 }

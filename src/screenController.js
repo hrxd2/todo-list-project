@@ -1,5 +1,6 @@
 
-export {clearDisplay, populateTasks, populateProjects, updateMain, initialRender, newElem};
+export {clearDisplay, populateTasks, populateProjects, initialRender, newElem};
+import { updateMain } from "./eventListener";
 import { getTaskArray, getProjectArray } from "./taskController";
 
 const main = document.querySelector(".main");
@@ -18,7 +19,7 @@ function newElem(elem, classText, textContent='', id=''){
         item.type = 'checkbox';
         item.id = id;
     }
-    if(classText === 'project-title-button' || classText === 'project-title-div'|| classText === 'delete-btn'|| classText === 'project-delete-button'){
+    if(classText === 'project-title-button' || classText === 'project-title-div'|| classText === 'delete-btn'|| classText === 'project-delete-button'|| classText === 'projectTask-add-button'){
         item.dataset.uid = id;
     }
     return item;
@@ -93,7 +94,7 @@ function populateProjects(projectArray){
         const titleDiv = newElem('div', 'project-title-div', '', `${obj.uid}`);
 
 		const titleButton = newElem('button', 'project-title-button', `${obj.title}`, `${obj.uid}`);
-        const addBtn = newElem('button', 'projectTask-add-button', '+');
+        const addBtn = newElem('button', 'projectTask-add-button', '+', `${obj.uid}`);
         const delBtn = newElem('button', 'project-delete-button', 'x', `${obj.uid}`);
 
         titleDiv.append(titleButton, addBtn, delBtn);
@@ -101,14 +102,9 @@ function populateProjects(projectArray){
 	});
 };
 
-function updateMain(){
-    console.log(getTaskArray());
-    getTaskArray().forEach(item => populateTasks(item));
-}
-
 function initialRender(){
     clearDisplay();
-    updateMain();
+    updateMain(); 
     const projectArray = getProjectArray();
     populateProjects(projectArray);
 };
