@@ -21,6 +21,9 @@ function newElem(elem, classText, textContent='', id='', forText='', type=''){
     if(elem === 'textarea' && id === 'description-box'){
         item.required = true;
     }
+    if(elem === 'textarea' && (id === 'notes')|| (id === 'checklist')){
+        item.setAttribute('placeholder', 'comma, seperated, values');
+    }
     if(elem === 'button'){
         item.type = type;
     }

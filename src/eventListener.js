@@ -81,6 +81,8 @@ function mainListener(){
                     }
                   });
                 }
+
+                populateProjects(projectArray);
             })
 };
 

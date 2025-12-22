@@ -1,0 +1,24 @@
+.all-tasks:hover,
+.project-title-button:hover{
+    background-color: #00eeff21;
+    border-radius: 7px;
+   transition: all 0.3s ease;
+}
+.add-button:hover,
+.project-add-button:hover,
+.projectTask-add-button:hover{
+    background: #57d157;
+    color: white;
+   transition: all 0.2s ease;
+}
+
+.project-delete-button:hover{
+    background: #ff0000ad;
+    color: white;
+   transition: all 0.3s ease;
+}
+
+.section:hover{
+   background-color: #484848b8;
+   transition: all 0.3s ease;
+}

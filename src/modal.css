@@ -3,8 +3,9 @@ dialog[open]{
   position-area: center;
   font-size: 1.25rem;
   font-family:  sans-serif;
-  background: #bba88f;
-  border: 1px solid black;
+  background: #914a4a;
+  border: 1px solid maroon;
+  border-radius: 15px;
   color: white;
 }
 .dialog-inputs,
@@ -20,14 +21,14 @@ dialog[open]{
 #title-label{
   outline: none;
   border: none;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #ffffff97;
   font-size: 1.2rem;
 }
 .dialog textarea,
 .dialog input,
 #priority,
 .project-title-input input{
-  background: #bba88f;
+  background: #914a4a; 
 }
 #priority,
 #due-date,
@@ -44,7 +45,9 @@ dialog[open]{
 .control-btns button{
   border-radius: 0px;
   border: 1px solid;
-  background: beige;
+  border-radius: 10px;
+  background: #ffb1b1;
+  color: maroon;
   font-family: "Science Gothic", sans-serif;
   padding: 20px 50px;
   font-size: inherit;
@@ -70,4 +73,9 @@ dialog[open]{
 }
 .project-add form{
   display: flex;
+}
+
+textarea::placeholder{
+  font-size: .9rem;
+  color: #ffffffc9;
 }

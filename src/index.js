@@ -1,6 +1,7 @@
 // index.js
 import "./styles.css"
 import "./modal.css"
+import "./hover.css"
 
 import { takeTodoInput,takeProjectInput, showProjects, getProjectArray, Task } from "./taskController.js";
 
