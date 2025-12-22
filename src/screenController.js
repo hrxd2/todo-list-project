@@ -106,8 +106,16 @@ function populateProjects(projectArray){
 		const titleButton = newElem('button', 'project-title-button', `${obj.title}`, `${obj.uid}`);
         const addBtn = newElem('button', 'projectTask-add-button', '+', `${obj.uid}`);
         const delBtn = newElem('button', 'project-delete-button', 'x', `${obj.uid}`);
+        
+        const ul = newElem("ul", 'ptitle');
+        obj.tasks.forEach(item => {
+            if(item){
+                const li = newElem('ul', 'ptitle', `${item.title}` );
+                ul.appendChild(li);
+            }
+        });
 
-        titleDiv.append(titleButton, addBtn, delBtn);
+        titleDiv.append(titleButton, addBtn, delBtn, ul);
         projectTitles.appendChild(titleDiv);
 	});
 };

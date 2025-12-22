@@ -11,8 +11,23 @@ const sectionTitle = document.querySelector(".section-title");
 // main side render of all tasks.
 function updateMain(){
     console.log(getTaskArray());
+    const mappedTasks = [];
+
     sectionTitle.textContent = 'All Tasks';
-    getTaskArray().forEach(item => populateTasks(item));
+    getTaskArray().forEach(item => mappedTasks.push(item));
+
+    // getTaskArray().forEach(item => populateTasks(item));
+
+    console.log(projectArray);
+
+    projectArray.forEach(item => {
+        item.tasks.forEach(obj => {
+              mappedTasks.push(obj);
+        })
+    });
+
+    console.log(mappedTasks);
+    mappedTasks.forEach(item => populateTasks(item));
 }
 
 //main side render of project tasks.
@@ -162,6 +177,7 @@ function dialogListener(){
             });
             projectRender(e);
             showProjects();
+            populateProjects(projectArray);
             // clearDisplay();
             // updateMain();
             //console.log(res);

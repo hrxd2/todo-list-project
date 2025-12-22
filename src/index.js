@@ -49,7 +49,7 @@ takeProjectInput("Sleep");
 const pArray = getProjectArray();
 pArray[0].addTasks(
     {
-    "title": "Evening Swimming Session",
+    "title": "Evening Session",
     "description": "Swim continuously focusing on breathing technique and endurance.",
     "dueDate": "2025-12-23",
     "priority": "High",
@@ -59,7 +59,7 @@ pArray[0].addTasks(
 );
 pArray[0].addTasks(
     {
-    "title": "Morning Technique Swim",
+    "title": "Morning Swim",
     "description": "Practice stroke technique and improve efficiency with slow, controlled laps.",
     "dueDate": "2025-12-24",
     "priority": "Medium",
