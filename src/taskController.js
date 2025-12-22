@@ -1,4 +1,4 @@
-export {takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, getTaskArray, getProjectArray}
+export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, removeProjectTask, getTaskArray, getProjectArray}
 
 const taskArray = [];
 const projectArray = [];
@@ -43,6 +43,15 @@ class ProjectTask{
     const task = new Task(obj);
     this.tasks.push(task);
   }
+
+  deleteTask(id){
+    this.tasks.forEach(item => {
+      if(item.uid === id){
+        const index = this.tasks.indexOf(item);
+        this.tasks.splice(index, 1);
+      }
+    });
+  }
 }
 
 function takeProjectInput(title){
@@ -65,11 +74,6 @@ function checkTasks(){
 }
 
 function removeTasks(id) {
-  //
-  //should moidfy this function to remove the tasks if it is on 
-  //project arrays, now this one wont splice the task from projectarray
-  //also update the logic for all tasks to get all from projects too
-  // 
   taskArray.forEach(obj => {
     if(obj.uid === id){
       const index = taskArray.indexOf(obj);
@@ -78,6 +82,13 @@ function removeTasks(id) {
   })
 }
 
+function removeProjectTask(id, title){
+  projectArray.forEach(obj => {
+    if(obj.title === title){
+      obj.deleteTask(id);
+    }
+  })
+}
 function removeProject(id){
   projectArray.forEach(obj => {
    if(obj.uid === id){

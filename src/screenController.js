@@ -10,7 +10,7 @@ function clearDisplay(){
     main.textContent = '';
 };
 
-function newElem(elem, classText, textContent='', id=''){
+function newElem(elem, classText, textContent='', id='', prjTitle){
     const item = document.createElement(elem);
     if(classText) item.classList.add(classText);
     if(textContent) item.textContent = textContent;
@@ -22,11 +22,15 @@ function newElem(elem, classText, textContent='', id=''){
     if(classText === 'project-title-button' || classText === 'project-title-div'|| classText === 'delete-btn'|| classText === 'project-delete-button'|| classText === 'projectTask-add-button'){
         item.dataset.uid = id;
     }
+    if(classText === 'projectTask-del-btn'){
+        item.dataset.uid = id;
+        item.dataset.title = prjTitle;
+    }
     return item;
 };
 
 //main side render
-function populateTasks(obj){
+function populateTasks(obj, isProject = false, prjTitle = ''){
 
     const {title, description, dueDate, priority, notes=[], checklist=[], uid} = obj;
 
@@ -34,7 +38,13 @@ function populateTasks(obj){
     const taskHead = newElem("div", "task-head");
     const titleH2 = newElem("h2", '', `${title}`);
     const buttonsDiv = newElem("div", 'btn-div');
-    const dltBtn = newElem("button", 'delete-btn', 'x', uid);
+    let dltBtn ;
+
+    if(isProject){
+        dltBtn = newElem("button", 'projectTask-del-btn', 'x', uid, prjTitle);
+    }else{
+        dltBtn = newElem("button", 'delete-btn', 'x', uid);
+    }
     const isDoneCheckbox = newElem("input", '', '', uid);
 
     buttonsDiv.append(isDoneCheckbox, dltBtn );
@@ -48,7 +58,7 @@ function populateTasks(obj){
 
     mainTaskDiv.append(descriptionPara, datePara, priorityPara);
 
-    if(notes.length !== 1){
+    if(notes.length !== 0){
         const noteDiv = newElem('div', 'notes-div');
         const noteText = newElem('p', 'note-text', 'Notes: ');
 
@@ -61,7 +71,7 @@ function populateTasks(obj){
         noteDiv.append(noteText, notesUl);
         mainTaskDiv.append(noteDiv);
     }
-    if(checklist.length !== 1){
+    if(checklist.length !== 0){
         const checkDiv = newElem("div", 'checklist-div');
         const checklistText = newElem('p', 'checklist-text', 'Checklists: ');
         checkDiv.appendChild(checklistText);

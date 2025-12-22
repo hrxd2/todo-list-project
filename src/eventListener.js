@@ -1,7 +1,7 @@
 import { closeDialog, collectData, showDialog } from "./modals";
 import { allTaskDialog, projectTaskDialog } from "./populateDialog";
 import { clearDisplay, populateProjects, populateTasks} from "./screenController";
-import { getProjectArray, getTaskArray, removeProject, removeTasks, showProjects, takeProjectInput, takeTodoInput} from "./taskController";
+import { getProjectArray, getTaskArray, removeProject, removeProjectTask, removeTasks, showProjects, takeProjectInput, takeTodoInput, Task} from "./taskController";
 
 export {mainListener, asideListener, dialogListener, updateMain}
 
@@ -25,11 +25,11 @@ function projectRender(e){
         prjArray.forEach(obj => {
             if(obj.uid === id){
             
-            const textValue = obj.getTitle();
-            sectionTitle.textContent = textValue;
+            const title = obj.getTitle();
+            sectionTitle.textContent = obj.getTitle();
 
             let task = obj.tasks;
-            task.forEach(obj => populateTasks(obj));
+            task.forEach(obj => populateTasks(obj, true, title));
             }
     });
 }
@@ -43,22 +43,30 @@ function mainListener(){
             console.log(id);
             removeTasks(id);
             clearDisplay();            
-            // populateTasks(taskArray);
-            //some problem here, 
-            //when deleted from projects it will render main tasks
-            //should fix that
-            //maybe  the class of delte button i guess
-            //shouldn't do updatemain with projectTasks
-            //only with all tasks
-            //thats where the updateMain comes in
 
             updateMain();
         }
 
         if(e.target.classList.contains("projectTask-del-btn")){
-            console.log("clicked");
-        }
-    })
+            const id = e.target.dataset.uid ;
+            const title = e.target.dataset.title;
+            removeProjectTask(id, title);
+
+            //projectRender(e) id changed to title;
+            clearDisplay();
+            const prjArray = getProjectArray();
+
+                prjArray.forEach(obj => {
+                    if(obj.title === title){
+                    
+                    sectionTitle.textContent = obj.getTitle();
+
+                    let task = obj.tasks;
+                    task.forEach(obj => populateTasks(obj, true, title));
+                    }
+                  });
+                }
+            })
 };
 
 function asideListener(){
@@ -107,6 +115,7 @@ function asideListener(){
 
         if(e.target.classList.contains('project-delete-button')){
             const id = e.target.dataset.uid;
+            clearDisplay();
             removeProject(id);
             populateProjects(projectArray);
             updateMain();

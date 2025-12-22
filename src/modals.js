@@ -20,9 +20,10 @@ function collectData(){
     const notes = [];
     const checklist = [];
 
-    document.querySelector("#notes").value.split(",").forEach(item =>  notes.push(item));
-
-    document.querySelector("#checklist").value.split(",").forEach(item => checklist.push(item));
+    const noteVal = document.querySelector("#notes").value;
+    if(noteVal) noteVal.split(",").forEach(item => notes.push(item));
+    const checkVal = document.querySelector("#checklist").value
+    if(checkVal) checkVal.split(",").forEach(item => checklist.push(item));
 
     if(!title || !description || !dueDate || !priority) return;
 
