@@ -6,7 +6,7 @@ const projectArray = [];
 class Task {
   constructor(obj){
 
-    const {title, description, dueDate, priority, notes=[], checklist=[]} = obj;
+    const {title, description, dueDate, priority, notes=[], checklist=[], isDone=false} = obj;
 
     this.title = title;
     this.description = description;
@@ -14,9 +14,22 @@ class Task {
     this.priority = priority;
     this.notes = notes;
     this.checklist = checklist;
+    this.isDone = isDone;
 
     const uid = crypto.randomUUID();
     this.uid = uid;
+  }
+
+  editTask(res){
+    const {title, description, dueDate, priority, notes=[], checklist=[], isDone=false} = res;
+    
+    this.title = title;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.notes = notes;
+    this.checklist = checklist;
+    this.isDone = isDone;
   }
 }
 

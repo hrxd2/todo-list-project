@@ -1,8 +1,8 @@
-export {allTaskDialog, projectTaskDialog};
+export {allTaskDialog, projectTaskDialog, editTaskDialog};
 
 const form = document.querySelector(".form");
 
-function newElem(elem, classText, textContent='', id='', forText='', type=''){
+function newElem(elem, classText, textContent='', id='', forText='', type='', val=''){
     const item = document.createElement(elem);
     if(classText) item.classList.add(classText);
     if(textContent) item.textContent = textContent;
@@ -13,10 +13,12 @@ function newElem(elem, classText, textContent='', id='', forText='', type=''){
         item.type = type;
         item.id = id;
         item.required = true;
+        item.value = val;
     }
     if(elem === "textarea"){
         item.name = id;
         item.id = id;
+        item.value = val;
     }
     if(elem === 'textarea' && id === 'description-box'){
         item.required = true;
@@ -31,48 +33,84 @@ function newElem(elem, classText, textContent='', id='', forText='', type=''){
         item.name = id;
         item.id = id;
         item.required = true;
+
         const selectedOption = document.createElement("option");
         selectedOption.textContent = 'select';
         selectedOption.value = '';
         selectedOption.setAttribute('disabled', '');
-        selectedOption.setAttribute('selected', '');
         item.appendChild(selectedOption);
 
         const highOption = document.createElement('option');
         highOption.textContent = "High";
         highOption.value = 'High';
+
         const lowOption = document.createElement('option');
         lowOption.textContent = "Low";
         lowOption.value = 'Low';
 
+        if(val === ''){
+            selectedOption.setAttribute('selected', '');
+        }
+
+        if(val === 'High'){
+            highOption.setAttribute('selected', '');
+        }
+
+        if(val === 'Low'){
+            lowOption.setAttribute('selected', '');
+        }
+
         item.append(highOption, lowOption);
     }
-    if(elem === 'button' && classText === 'submit-project-task-btn'){
+    if(elem === 'button' && (classText === 'submit-project-task-btn' || classText === 'submit-edit-btn')){
         item.dataset.uid = id;
     }
 
     return item;
 };
 
-function renderFields(){
-    const dialogInputs = newElem("div", "dialog-inputs");
+function renderFields(obj={}){
 
-    const titleLabel = newElem("label", '', 'Title: ', '', 'title-label');
-    const titleInput = newElem("input", '', '', 'title-label','', 'text');
-    const descriptionLable = newElem("label", '', 'Description:' , '', 'description-box');
-    const descriptionText = newElem("textarea", '','', 'description-box');
-    const dateLabel = newElem("label", '', 'Due Date: ', '', 'due-date');
-    const dateInput = newElem('input', '', '', 'due-date', '', 'date');
-    const priorityLabel = newElem("lable", '', 'Priority: ', '', 'priority');
-    const selectMenu = newElem("select", '', '', 'priority');
-    const noteLabel = newElem("label", '', 'Notes: ', '', 'notes' );
-    const noteArea = newElem("textarea", '', '', 'notes', );
-    const chekListLabel = newElem("label", '', 'Checklist: ', '', 'checklist');
-    const checkArea = newElem("textarea", '', '', 'checklist');
+    if(obj){
 
-    dialogInputs.append(titleLabel, titleInput, descriptionLable, descriptionText, dateLabel, dateInput, priorityLabel, selectMenu, noteLabel, noteArea, chekListLabel, checkArea);
-    form.appendChild(dialogInputs);
+        const {title, description, dueDate, priority, notes=[], checklist=[] } = obj;
 
+        const dialogInputs = newElem("div", "dialog-inputs");
+
+        const titleLabel = newElem("label", '', 'Title: ', '', 'title-label');
+        const titleInput = newElem("input", '', '', 'title-label','', 'text', title);
+        const descriptionLable = newElem("label", '', 'Description:' , '', 'description-box');
+        const descriptionText = newElem("textarea", '','', 'description-box', '', '', description);
+        const dateLabel = newElem("label", '', 'Due Date: ', '', 'due-date');
+        const dateInput = newElem('input', '', '', 'due-date', '', 'date', dueDate);
+        const priorityLabel = newElem("lable", '', 'Priority: ', '', 'priority');
+        const selectMenu = newElem("select", '', '', 'priority', '', '', priority);
+        const noteLabel = newElem("label", '', 'Notes: ', '', 'notes' );
+        const noteArea = newElem("textarea", '', '', 'notes', '', '', notes );
+        const chekListLabel = newElem("label", '', 'Checklist: ', '', 'checklist');
+        const checkArea = newElem("textarea", '', '', 'checklist', '', '', checklist);
+
+        dialogInputs.append(titleLabel, titleInput, descriptionLable, descriptionText, dateLabel, dateInput, priorityLabel, selectMenu, noteLabel, noteArea, chekListLabel, checkArea);
+        form.appendChild(dialogInputs);
+    }else{
+        const dialogInputs = newElem("div", "dialog-inputs");
+
+        const titleLabel = newElem("label", '', 'Title: ', '', 'title-label');
+        const titleInput = newElem("input", '', '', 'title-label','', 'text');
+        const descriptionLable = newElem("label", '', 'Description:' , '', 'description-box');
+        const descriptionText = newElem("textarea", '','', 'description-box');
+        const dateLabel = newElem("label", '', 'Due Date: ', '', 'due-date');
+        const dateInput = newElem('input', '', '', 'due-date', '', 'date');
+        const priorityLabel = newElem("lable", '', 'Priority: ', '', 'priority');
+        const selectMenu = newElem("select", '', '', 'priority');
+        const noteLabel = newElem("label", '', 'Notes: ', '', 'notes' );
+        const noteArea = newElem("textarea", '', '', 'notes', );
+        const chekListLabel = newElem("label", '', 'Checklist: ', '', 'checklist');
+        const checkArea = newElem("textarea", '', '', 'checklist');
+
+        dialogInputs.append(titleLabel, titleInput, descriptionLable, descriptionText, dateLabel, dateInput, priorityLabel, selectMenu, noteLabel, noteArea, chekListLabel, checkArea);
+        form.appendChild(dialogInputs);
+    }
 }
 
 function renderButton(submitButtonClass, id=''){
@@ -93,5 +131,9 @@ function projectTaskDialog(id){
     form.textContent = '';
     renderFields();
     renderButton("submit-project-task-btn", id);
-
 }
+ function editTaskDialog(obj){
+    form.textContent = '';
+    renderFields(obj);
+    renderButton('submit-edit-btn', obj.uid);
+ }

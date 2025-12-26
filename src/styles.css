@@ -70,9 +70,11 @@ body{
 }
 
 .task-head{
-  display: flex;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  /* display: flex;
   align-items: start;
-  justify-content: space-between;
+  justify-content: space-between; */
 }
 .task-main{
   background: #5e5e5e;
@@ -91,12 +93,18 @@ body{
 }
 
 .btn-div{
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 5px;
 }
 .btn-div > button{
+  align-self: center;
+  padding: 3px 0px;
   font-size: 0.8rem;
   border-radius: 10px;
+  background: #c9b6a4;
+}
+.btn-div > input{
+  align-self: center;
 }
 
 .notes{

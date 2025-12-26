@@ -1,5 +1,5 @@
 import { closeDialog, collectData, showDialog } from "./modals";
-import { allTaskDialog, projectTaskDialog } from "./populateDialog";
+import { allTaskDialog, editTaskDialog, projectTaskDialog } from "./populateDialog";
 import { clearDisplay, populateProjects, populateTasks} from "./screenController";
 import { getProjectArray, getTaskArray, removeProject, removeProjectTask, removeTasks, showProjects, takeProjectInput, takeTodoInput, Task} from "./taskController";
 
@@ -52,6 +52,7 @@ function projectRender(e){
 function mainListener(){
 
     const main = document.querySelector(".main");
+
     main.addEventListener("click", e => {
         if(e.target.classList.contains("delete-btn")){
             const id = e.target.dataset.uid;
@@ -71,19 +72,35 @@ function mainListener(){
             clearDisplay();
             const prjArray = getProjectArray();
 
-                prjArray.forEach(obj => {
-                    if(obj.title === title){
-                    
-                    sectionTitle.textContent = obj.getTitle();
+							prjArray.forEach(obj => {
+								if(obj.title === title){
+								
+								sectionTitle.textContent = obj.getTitle();
 
-                    let task = obj.tasks;
-                    task.forEach(obj => populateTasks(obj, true, title));
-                    }
-                  });
-                }
+								let task = obj.tasks;
+								task.forEach(obj => populateTasks(obj, true, title));
+								}
+           });
+        }
 
-                populateProjects(projectArray);
-            })
+        if(e.target.classList.contains("edit-btn")){
+					const id = e.target.dataset.uid;
+					getTaskArray().forEach(item => {
+						if(item.uid === id){
+							console.log(item);
+							editTaskDialog(item);
+							showDialog();	
+						}
+					})
+					
+        }
+
+        populateProjects(projectArray);
+    }
+
+);
+
+
 };
 
 function asideListener(){
@@ -185,6 +202,24 @@ function dialogListener(){
             //console.log(res);
             closeDialog();
         }
+
+				if(e.target.classList.contains("submit-edit-btn")){
+					console.log('edited');
+
+					const id = e.target.dataset.uid;
+					const res = collectData();
+					if(!res) return;
+					getTaskArray().forEach(item => {
+						if(item.uid === id){
+							item.editTask(res);
+						}
+					})
+					clearDisplay();
+					updateMain();
+
+
+					closeDialog();
+				}
     })
 
 };
