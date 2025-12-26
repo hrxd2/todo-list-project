@@ -52,6 +52,10 @@ function populateTasks(obj, isProject = false, prjTitle = ''){
     section.append(taskHead);
 
     const mainTaskDiv = newElem("div", "task-main");
+
+    if(priority === 'High') mainTaskDiv.classList.add('high-priority');
+    if(priority === 'Low') mainTaskDiv.classList.add('low-priority');
+
     const descriptionPara = newElem("code", 'description-text', `> ${description}`);
     const datePara = newElem("p", 'date', `Due: ${dueDate}`);
     const priorityPara = newElem("p", 'priority', `Priority: ${priority}`);

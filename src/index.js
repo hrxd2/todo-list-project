@@ -63,7 +63,7 @@ pArray[0].addTasks(
     "title": "Morning Swim",
     "description": "Practice stroke technique and improve efficiency with slow, controlled laps.",
     "dueDate": "2025-12-24",
-    "priority": "Medium",
+    "priority": "Low",
     "notes": ["Focus on form over speed", "Bilateral breathing"],
     "checklist": ["5 warm-up laps", "20 technique laps", "Stretch shoulders"]
   }
@@ -83,7 +83,7 @@ pArray[1].addTasks(
     "title": "Wind-Down",
     "description": "Follow a calm night routine to improve sleep quality and recovery.",
     "dueDate": "2025-12-24",
-    "priority": "Medium",
+    "priority": "Low",
     "notes": ["Light reading", "No caffeine after evening"],
     "checklist": ["Prepare clothes for tomorrow", "Dim lights", "Sleep by 10:30 PM"]
   }
