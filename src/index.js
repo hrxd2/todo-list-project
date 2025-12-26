@@ -20,16 +20,6 @@ const task1 = new Task(
   }
 );
 
-const task2 = new Task(
-    {
-    "title": "Project UI",
-    "description": "Create the basic layout and components for the todo app.",
-    "dueDate": "2025-12-26",
-    "priority": "High",
-    "checklist": ["Header", "Sidebar", "Task list", "Footer"]
-  }
-);
-
 const task3 = new Task(
     {
     "title": "Clean Workspace",
@@ -40,7 +30,6 @@ const task3 = new Task(
 );
 
 takeTodoInput(task1);
-takeTodoInput(task2);
 takeTodoInput(task3);
 
 
