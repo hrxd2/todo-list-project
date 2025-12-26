@@ -74,12 +74,25 @@ function checkTasks(){
 }
 
 function removeTasks(id) {
+  let isAlltask = false;
   taskArray.forEach(obj => {
     if(obj.uid === id){
+      isAlltask = true;
       const index = taskArray.indexOf(obj);
       taskArray.splice(index, 1);
     }
+  });
+  
+  if(isAlltask) return 0;
+
+  projectArray.forEach(obj => {
+    obj.tasks.forEach(item => {
+      if(item.uid == id){
+        obj.deleteTask(id);
+      }
+    })
   })
+
 }
 
 function removeProjectTask(id, title){
