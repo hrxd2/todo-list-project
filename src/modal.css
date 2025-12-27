@@ -1,6 +1,10 @@
 dialog[open]{
   padding: 110px 60px;
-  position-area: center;
+  /*position-area: center;*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 1.25rem;
   font-family:  sans-serif;
   background: #914a4a;

@@ -1,4 +1,4 @@
-import { editTaskDialog } from "./populateDialog";
+import { editTaskDialog, editProjectTaskDialog } from "./populateDialog";
 
 export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, removeProjectTask, getTaskArray, getProjectArray, editAllTask, submitEditedTaskMain}
 
@@ -67,6 +67,15 @@ class ProjectTask{
       }
     });
   }
+
+  editTask(id){
+    this.tasks.forEach(item => {
+      if(item.uid === id){
+        editProjectTaskDialog(item);
+      }
+    })
+  }
+
 }
 
 function takeProjectInput(title){

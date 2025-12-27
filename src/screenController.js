@@ -22,7 +22,7 @@ function newElem(elem, classText, textContent='', id='', prjTitle){
     if(classText === 'project-title-button' || classText === 'project-title-div'|| classText === 'delete-btn'|| classText === 'project-delete-button'|| classText === 'projectTask-add-button'|| classText === 'edit-btn'){
         item.dataset.uid = id;
     }
-    if(classText === 'projectTask-del-btn'){
+    if(classText === 'projectTask-del-btn' || classText === 'projectTask-edit-btn'){
         item.dataset.uid = id;
         item.dataset.title = prjTitle;
     }
@@ -38,13 +38,15 @@ function populateTasks(obj, isProject = false, prjTitle = ''){
     const taskHead = newElem("div", "task-head");
     const titleH2 = newElem("h2", '', `${title}`);
     const buttonsDiv = newElem("div", 'btn-div');
-    const editBtn = newElem('button', 'edit-btn', 'e', uid);
+    let editBtn ;
     let dltBtn ;
 
     if(isProject){
         dltBtn = newElem("button", 'projectTask-del-btn', 'x', uid, prjTitle);
+        editBtn = newElem('button', 'projectTask-edit-btn', 'e', uid, prjTitle);
     }else{
         dltBtn = newElem("button", 'delete-btn', 'x', uid);
+        editBtn = newElem('button', 'edit-btn', 'e', uid);
     }
     const isDoneCheckbox = newElem("input", '', '', uid);
 

@@ -1,4 +1,4 @@
-export {allTaskDialog, projectTaskDialog, editTaskDialog};
+export {allTaskDialog, projectTaskDialog, editTaskDialog, editProjectTaskDialog};
 
 const form = document.querySelector(".form");
 
@@ -62,7 +62,7 @@ function newElem(elem, classText, textContent='', id='', forText='', type='', va
 
         item.append(highOption, lowOption);
     }
-    if(elem === 'button' && (classText === 'submit-project-task-btn' || classText === 'submit-edit-btn')){
+    if(elem === 'button' && (classText === 'submit-project-task-btn' || classText === 'submit-edit-btn' || classText === 'submit-prj-edit-btn')){
         item.dataset.uid = id;
     }
 
@@ -137,3 +137,9 @@ function projectTaskDialog(id){
     renderFields(obj);
     renderButton('submit-edit-btn', obj.uid);
  }
+
+function editProjectTaskDialog(obj){
+    form.textContent = '';
+    renderFields(obj);
+    renderButton("submit-prj-edit-btn", obj.uid);
+}

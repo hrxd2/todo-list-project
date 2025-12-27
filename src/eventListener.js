@@ -49,6 +49,31 @@ function projectRender(e){
     });
 }
 
+function editedPrjRender(e){
+  clearDisplay();
+  const id = e.target.dataset.uid;
+  let projectId;
+  
+  projectArray.forEach(item => {
+    item.tasks.forEach(obj => {
+      if(obj.uid === id){
+        projectId = item.uid;
+      }
+    })
+  })
+
+  projectArray.forEach(obj => {
+    if(obj.uid === projectId){
+    
+    const title = obj.getTitle();
+    sectionTitle.textContent = obj.getTitle();
+
+    let task = obj.tasks;
+    task.forEach(obj => populateTasks(obj, true, title));
+    }
+  });
+}
+
 function mainListener(){
 
     const main = document.querySelector(".main");
@@ -82,6 +107,19 @@ function mainListener(){
                     }
            });
         }
+
+    if(e.target.classList.contains("projectTask-edit-btn")){
+        const id = e.target.dataset.uid ;
+        const title = e.target.dataset.title;
+        
+        projectArray.forEach(item => {
+        if(item.title === title){
+          item.editTask(id);
+        }
+        })
+
+        showDialog();
+    }
 
         if(e.target.classList.contains("edit-btn")){
             const id = e.target.dataset.uid;
@@ -118,11 +156,11 @@ function asideListener(){
         if(e.target.classList.contains("add-button")){
             allTaskDialog();
             showDialog();
-        }
+        };
 
         if(e.target.classList.contains("project-add-button")){
             projectAdd.classList.toggle("project-title-input");
-        }
+        };
 
         if(e.target.classList.contains("project-title-add-btn")){
             const inputVal = document.querySelector("#project-title-input").value;
@@ -133,13 +171,13 @@ function asideListener(){
             populateProjects(projectArray);
             showProjects();
             projectAdd.classList.toggle("project-title-input");
-        }
+        };
 
         if(e.target.classList.contains("projectTask-add-button")){
             const id = e.target.dataset.uid;
             projectTaskDialog(id);
             showDialog();
-        }
+        };
 
         if(e.target.classList.contains('project-delete-button')){
             const id = e.target.dataset.uid;
@@ -208,6 +246,31 @@ function dialogListener(){
             populateProjects(projectArray);
 
             closeDialog();
+        }
+
+        if(e.target.classList.contains("submit-prj-edit-btn")){
+          console.log("sub edit task done");
+
+
+          const id = e.target.dataset.uid;
+          const res = collectData();
+          if(!res) return;
+          
+          projectArray.forEach(item => {
+            item.tasks.forEach(obj => {
+              if(obj.uid === id){
+                obj.editTask(res);
+              }
+            })
+          })
+
+          clearDisplay();
+         // const id = findId(e);
+         // projectRender(id);
+
+          editedPrjRender(e);
+          populateProjects(projectArray);
+          closeDialog();
         }
     })
 

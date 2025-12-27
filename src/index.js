@@ -80,7 +80,6 @@ pArray[1].addTasks(
 
 initialRender();
 showProjects();
-
 asideListener();
 mainListener();
 dialogListener();
