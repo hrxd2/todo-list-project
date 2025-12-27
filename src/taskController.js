@@ -1,4 +1,6 @@
-export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, removeProjectTask, getTaskArray, getProjectArray}
+import { editTaskDialog } from "./populateDialog";
+
+export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, removeProjectTask, getTaskArray, getProjectArray, editAllTask, submitEditedTaskMain}
 
 const taskArray = [];
 const projectArray = [];
@@ -123,6 +125,46 @@ function removeProject(id){
    } 
   });
 }
+
+function editAllTask(id){
+  let editAllFlag = false;
+  taskArray.forEach(item => {
+    if(item.uid === id){
+      editAllFlag = true;
+      console.log(item);
+      editTaskDialog(item);
+    }
+  
+  if(editAllFlag) return 0;
+  projectArray.forEach(item => {
+    item.tasks.forEach(obj => {
+      if(obj.uid === id){
+        console.log(obj);
+        editTaskDialog(obj);
+      }
+    })
+  })
+  })
+};
+
+function submitEditedTaskMain(id, res){
+  let flag = false;
+  taskArray.forEach(item => {
+    if(item.uid === id){
+      flag = true;
+      item.editTask(res);
+    }
+  })
+  if(flag) return 0;
+
+  projectArray.forEach(item => {
+    item.tasks.forEach(obj => {
+      if(obj.uid === id){
+        obj.editTask(res);
+      }
+    })
+  })
+};
 
 function getTaskArray(){
   return taskArray;
