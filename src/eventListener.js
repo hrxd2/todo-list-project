@@ -1,7 +1,7 @@
 import { closeDialog, collectData, showDialog } from "./modals";
 import { allTaskDialog, editTaskDialog, projectTaskDialog } from "./populateDialog";
 import { clearDisplay, populateProjects, populateTasks} from "./screenController";
-import { editAllTask, getProjectArray, getTaskArray, removeProject, removeProjectTask, removeTasks, showProjects, submitEditedTaskMain, takeProjectInput, takeTodoInput, Task} from "./taskController";
+import { editAllTask, getProjectArray, getTaskArray, isDone, removeProject, removeProjectTask, removeTasks, showProjects, submitEditedTaskMain, takeProjectInput, takeTodoInput, Task} from "./taskController";
 
 export {mainListener, asideListener, dialogListener, updateMain}
 
@@ -99,6 +99,11 @@ function mainListener(){
             const id = e.target.dataset.uid;
             editAllTask(id);
             showDialog();
+        }
+
+        if(e.target.classList.contains("isDoneBox")){
+            const id = e.target.id;
+            isDone(id);
         }
 
         populateProjects(projectArray);

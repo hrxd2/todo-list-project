@@ -1,6 +1,6 @@
 import { editTaskDialog, editProjectTaskDialog } from "./populateDialog";
 
-export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, removeProjectTask, getTaskArray, getProjectArray, editAllTask, submitEditedTaskMain}
+export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, removeProjectTask, getTaskArray, getProjectArray, editAllTask, submitEditedTaskMain, isDone}
 
 const taskArray = [];
 const projectArray = [];
@@ -33,6 +33,11 @@ class Task {
     this.checklist = checklist;
     this.isDone = isDone;
   }
+
+  isTaskDone(){
+    !this.isDone ? this.isDone = true : this.isDone = false ;
+  }
+
 }
 
 function takeTodoInput(obj){
@@ -155,6 +160,25 @@ function editAllTask(id){
   })
   })
 };
+
+function isDone(id){
+  let doneFlag = false;
+  taskArray.forEach(item => {
+      if(item.uid === id){
+        doneFlag = true;
+        item.isTaskDone();
+      }
+  })
+  if(doneFlag) return 0;
+
+  projectArray.forEach(item => {
+    item.tasks.forEach(obj => {
+      if(obj.uid === id){
+        obj.isTaskDone();
+      }
+    })
+  })
+}
 
 function submitEditedTaskMain(id, res){
   let flag = false;

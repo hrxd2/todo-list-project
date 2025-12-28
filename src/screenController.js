@@ -10,7 +10,7 @@ function clearDisplay(){
     main.textContent = '';
 };
 
-function newElem(elem, classText, textContent='', id='', prjTitle){
+function newElem(elem, classText, textContent='', id='', prjTitle, isDone=false){
     const item = document.createElement(elem);
     if(classText) item.classList.add(classText);
     if(textContent) item.textContent = textContent;
@@ -18,6 +18,13 @@ function newElem(elem, classText, textContent='', id='', prjTitle){
         //hardcode
         item.type = 'checkbox';
         item.id = id;
+    }
+    if(classText === 'isDoneBox'){
+        if(isDone){
+            item.checked = true;
+        }else{
+            item.checked = false;
+        }
     }
     if(classText === 'project-title-button' || classText === 'project-title-div'|| classText === 'delete-btn'|| classText === 'project-delete-button'|| classText === 'projectTask-add-button'|| classText === 'edit-btn'){
         item.dataset.uid = id;
@@ -32,7 +39,7 @@ function newElem(elem, classText, textContent='', id='', prjTitle){
 //main side render
 function populateTasks(obj, isProject = false, prjTitle = ''){
 
-    const {title, description, dueDate, priority, notes=[], checklist=[], uid} = obj;
+    const {title, description, dueDate, priority, notes=[], checklist=[], uid, isDone} = obj;
 
     const section = newElem("section", "section");
     const taskHead = newElem("div", "task-head");
@@ -48,7 +55,7 @@ function populateTasks(obj, isProject = false, prjTitle = ''){
         dltBtn = newElem("button", 'delete-btn', 'x', uid);
         editBtn = newElem('button', 'edit-btn', 'e', uid);
     }
-    const isDoneCheckbox = newElem("input", '', '', uid);
+    const isDoneCheckbox = newElem("input", 'isDoneBox', '', uid, '', isDone);
 
     buttonsDiv.append(isDoneCheckbox,editBtn, dltBtn );
     taskHead.append(titleH2, buttonsDiv );
