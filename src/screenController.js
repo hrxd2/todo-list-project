@@ -26,6 +26,10 @@ function newElem(elem, classText, textContent='', id='', prjTitle, isDone=false)
             item.checked = false;
         }
     }
+    if(elem === 'section' && isDone){
+        item.classList.add("cross-out");
+    }
+
     if(classText === 'project-title-button' || classText === 'project-title-div'|| classText === 'delete-btn'|| classText === 'project-delete-button'|| classText === 'projectTask-add-button'|| classText === 'edit-btn'){
         item.dataset.uid = id;
     }
@@ -41,21 +45,23 @@ function populateTasks(obj, isProject = false, prjTitle = ''){
 
     const {title, description, dueDate, priority, notes=[], checklist=[], uid, isDone} = obj;
 
-    const section = newElem("section", "section");
+    const section = newElem("section", "section", '', '', '', isDone);
     const taskHead = newElem("div", "task-head");
     const titleH2 = newElem("h2", '', `${title}`);
     const buttonsDiv = newElem("div", 'btn-div');
+    let isDoneCheckbox;
     let editBtn ;
     let dltBtn ;
 
     if(isProject){
         dltBtn = newElem("button", 'projectTask-del-btn', 'x', uid, prjTitle);
         editBtn = newElem('button', 'projectTask-edit-btn', 'e', uid, prjTitle);
+        isDoneCheckbox = newElem("input", 'isDoneBoxFromPrj', '', uid, '', isDone);
     }else{
         dltBtn = newElem("button", 'delete-btn', 'x', uid);
         editBtn = newElem('button', 'edit-btn', 'e', uid);
+        isDoneCheckbox = newElem("input", 'isDoneBox', '', uid, '', isDone);
     }
-    const isDoneCheckbox = newElem("input", 'isDoneBox', '', uid, '', isDone);
 
     buttonsDiv.append(isDoneCheckbox,editBtn, dltBtn );
     taskHead.append(titleH2, buttonsDiv );

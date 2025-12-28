@@ -30,6 +30,20 @@ function updateMain(){
     mappedTasks.forEach(item => populateTasks(item));
 }
 
+function findId(id){
+// const id = e.target.dataset.uid;
+let projectId;
+
+projectArray.forEach(item => {
+    item.tasks.forEach(obj => {
+    if(obj.uid === id){
+        projectId = item.uid;
+    }
+    })
+})
+return projectId;
+}
+
 //main side render of project tasks.
 function projectRender(id){
 
@@ -104,6 +118,15 @@ function mainListener(){
         if(e.target.classList.contains("isDoneBox")){
             const id = e.target.id;
             isDone(id);
+            clearDisplay();
+            updateMain();
+        }
+
+        if(e.target.classList.contains("isDoneBoxFromPrj")){
+            const id = e.target.id;
+            isDone(id);
+            const pId = findId(id);
+            projectRender(pId);
         }
 
         populateProjects(projectArray);
@@ -244,25 +267,10 @@ function dialogListener(){
             })
           })
 
-          clearDisplay();
+        //   clearDisplay();
          // const id = findId(e);
          // projectRender(id);
-
-         function findId(){
-            // const id = e.target.dataset.uid;
-            let projectId;
-            
-            projectArray.forEach(item => {
-                item.tasks.forEach(obj => {
-                if(obj.uid === id){
-                    projectId = item.uid;
-                }
-               })
-            })
-            return projectId;
-         }
-
-        const pId = findId();
+        const pId = findId(id);
         
         projectRender(pId);
         populateProjects(projectArray);
