@@ -19,7 +19,7 @@ function newElem(elem, classText, textContent='', id='', prjTitle, isDone=false)
         item.type = 'checkbox';
         item.id = id;
     }
-    if(classText === 'isDoneBox'){
+    if(classText === 'isDoneBox'|| classText === 'isDoneBoxFromPrj'){
         if(isDone){
             item.checked = true;
         }else{
