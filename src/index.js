@@ -67,16 +67,6 @@ pArray[1].addTasks(
     "checklist": ["Set alarm", "Turn off screens", "Lights out by 10:30 PM"]
   }
 )
-pArray[1].addTasks(
-    {
-    "title": "Wind-Down",
-    "description": "Follow a calm night routine to improve sleep quality and recovery.",
-    "dueDate": "2025-12-24",
-    "priority": "Low",
-    "notes": ["Light reading", "No caffeine after evening"],
-    "checklist": ["Prepare clothes for tomorrow", "Dim lights", "Sleep by 10:30 PM"]
-  }
-)
 
 initialRender();
 showProjects();

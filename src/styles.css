@@ -71,7 +71,7 @@ body{
 
 .task-head{
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 2fr 1fr;
   /* display: flex;
   align-items: start;
   justify-content: space-between; */
@@ -97,7 +97,6 @@ body{
   gap: 5px;
 }
 .btn-div > button{
-  align-self: center;
   padding: 3px 0px;
   font-size: 0.8rem;
   border-radius: 10px;

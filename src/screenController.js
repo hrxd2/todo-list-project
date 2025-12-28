@@ -54,12 +54,12 @@ function populateTasks(obj, isProject = false, prjTitle = ''){
     let dltBtn ;
 
     if(isProject){
-        dltBtn = newElem("button", 'projectTask-del-btn', 'x', uid, prjTitle);
-        editBtn = newElem('button', 'projectTask-edit-btn', 'e', uid, prjTitle);
+        dltBtn = newElem("button", 'projectTask-del-btn', '✘', uid, prjTitle);
+        editBtn = newElem('button', 'projectTask-edit-btn', '️️️🖉', uid, prjTitle);
         isDoneCheckbox = newElem("input", 'isDoneBoxFromPrj', '', uid, '', isDone);
     }else{
-        dltBtn = newElem("button", 'delete-btn', 'x', uid);
-        editBtn = newElem('button', 'edit-btn', 'e', uid);
+        dltBtn = newElem("button", 'delete-btn', '✘', uid);
+        editBtn = newElem('button', 'edit-btn', '️️🖉', uid);
         isDoneCheckbox = newElem("input", 'isDoneBox', '', uid, '', isDone);
     }
 
