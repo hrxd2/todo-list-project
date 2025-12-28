@@ -31,12 +31,11 @@ function updateMain(){
 }
 
 //main side render of project tasks.
-function projectRender(e){
+function projectRender(id){
 
     clearDisplay();
     const prjArray = getProjectArray();
 
-    const id = e.target.dataset.uid;
         prjArray.forEach(obj => {
             if(obj.uid === id){
             
@@ -47,31 +46,6 @@ function projectRender(e){
             task.forEach(obj => populateTasks(obj, true, title));
             }
     });
-}
-
-function editedPrjRender(e){
-  clearDisplay();
-  const id = e.target.dataset.uid;
-  let projectId;
-  
-  projectArray.forEach(item => {
-    item.tasks.forEach(obj => {
-      if(obj.uid === id){
-        projectId = item.uid;
-      }
-    })
-  })
-
-  projectArray.forEach(obj => {
-    if(obj.uid === projectId){
-    
-    const title = obj.getTitle();
-    sectionTitle.textContent = obj.getTitle();
-
-    let task = obj.tasks;
-    task.forEach(obj => populateTasks(obj, true, title));
-    }
-  });
 }
 
 function mainListener(){
@@ -150,7 +124,8 @@ function asideListener(){
 
 
         if(e.target.classList.contains("project-title-button")){
-            projectRender(e);
+            const id = e.target.dataset.uid;
+            projectRender(id);
         };
 
         if(e.target.classList.contains("add-button")){
@@ -226,7 +201,7 @@ function dialogListener(){
                     item.addTasks(res);
                 }
             });
-            projectRender(e);
+            projectRender(id);
             showProjects();
             //aside render of subTasks
             populateProjects(projectArray);
@@ -268,10 +243,26 @@ function dialogListener(){
          // const id = findId(e);
          // projectRender(id);
 
-          editedPrjRender(e);
-          populateProjects(projectArray);
-          closeDialog();
-        }
+         function findId(){
+            // const id = e.target.dataset.uid;
+            let projectId;
+            
+            projectArray.forEach(item => {
+                item.tasks.forEach(obj => {
+                if(obj.uid === id){
+                    projectId = item.uid;
+                }
+               })
+            })
+            return projectId;
+         }
+
+        const pId = findId();
+        
+        projectRender(pId);
+        populateProjects(projectArray);
+        closeDialog();
+      }
     })
 
 };
