@@ -3,7 +3,7 @@ import "./styles.css"
 import "./modal.css"
 import "./hover.css"
 
-import { takeTodoInput,takeProjectInput, showProjects, getProjectArray, Task } from "./taskController.js";
+import { takeTodoInput,takeProjectInput, showProjects, getProjectArray, Task, isDone } from "./taskController.js";
 
 import { initialRender } from "./screenController.js";
 import {asideListener, dialogListener, mainListener } from "./eventListener.js";
@@ -39,24 +39,25 @@ takeProjectInput("Sleep");
 const pArray = getProjectArray();
 pArray[0].addTasks(
     {
-    "title": "Evening Session",
-    "description": "Swim continuously focusing on breathing technique and endurance.",
-    "dueDate": "2025-12-23",
-    "priority": "High",
-    "notes": ["Freestyle laps", "Controlled breathing"],
-    "checklist": ["Warm-up stretches", "30 laps", "Cool down"]
-  }
-);
-pArray[0].addTasks(
-    {
     "title": "Morning Swim",
     "description": "Practice stroke technique and improve efficiency with slow, controlled laps.",
     "dueDate": "2025-12-24",
-    "priority": "Low",
+    "priority": "High",
     "notes": ["Focus on form over speed", "Bilateral breathing"],
     "checklist": ["5 warm-up laps", "20 technique laps", "Stretch shoulders"]
   }
 )
+pArray[0].addTasks(
+    {
+    "title": "Evening Session",
+    "description": "Swim continuously focusing on breathing technique and endurance.",
+    "dueDate": "2025-12-23",
+    "priority": "Low",
+    "notes": ["Freestyle laps", "Controlled breathing"],
+    "checklist": ["Warm-up stretches", "30 laps", "Cool down"],
+    "isDone": true,
+  }
+);
 pArray[1].addTasks(
     {
     "title": "Maintain Sleep ",
@@ -64,7 +65,7 @@ pArray[1].addTasks(
     "dueDate": "2025-12-23",
     "priority": "High",
     "notes": ["No phone after 10 PM", "Dark room"],
-    "checklist": ["Set alarm", "Turn off screens", "Lights out by 10:30 PM"]
+    "checklist": ["Set alarm", "Turn off screens", "Lights out by 10:30 PM"],
   }
 )
 
