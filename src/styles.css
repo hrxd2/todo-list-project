@@ -96,6 +96,7 @@ body{
 .btn-div{
   grid-template-columns: 1fr 1fr 1fr;
   gap: 5px;
+  align-content: center;
 }
 .btn-div > button{
   padding: 3px 0px;

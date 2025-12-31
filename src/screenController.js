@@ -3,6 +3,8 @@ export {clearDisplay, populateTasks, populateProjects, initialRender, newElem};
 import { updateMain } from "./eventListener";
 import { getTaskArray, getProjectArray } from "./taskController";
 
+import { format } from "date-fns";
+
 const main = document.querySelector(".main");
 const projectTitles = document.querySelector(".project-titles");
 
@@ -44,6 +46,14 @@ function newElem(elem, classText, textContent='', id='', prjTitle, isDone=false)
 function populateTasks(obj, isProject = false, prjTitle = ''){
 
     const {title, description, dueDate, priority, notes=[], checklist=[], uid, isDone} = obj;
+    
+    //formatting DATE with date-fns;
+    let day = dueDate.split("-");
+    let one = parseInt(day[0]);
+    let two = parseInt(day[1]);
+    two--;
+    let three = parseInt(day[2]);
+    const dateFormatted = format(new Date(one, two, three), "MMMM do, yyyy");
 
     const section = newElem("section", "section", '', '', '', isDone);
     const taskHead = newElem("div", "task-head");
@@ -73,7 +83,7 @@ function populateTasks(obj, isProject = false, prjTitle = ''){
     if(priority === 'Low') mainTaskDiv.classList.add('low-priority');
 
     const descriptionPara = newElem("code", 'description-text', `> ${description}`);
-    const datePara = newElem("p", 'date', `Due: ${dueDate}`);
+    const datePara = newElem("p", 'date', `Due: ${dateFormatted}`);
     const priorityPara = newElem("p", 'priority', `Priority: ${priority}`);
 
     mainTaskDiv.append(descriptionPara, datePara, priorityPara);

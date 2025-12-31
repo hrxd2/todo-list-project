@@ -1,0 +1,8 @@
+we should set align-content center on btn-div
+
+also we should find find the usable format form dat -fn and use ti to generate a tag to show , the duration of it,
+like in 2 days, 2 daays ago, the problem is to check what if the date is before from now, think about and
+
+set up local storage , it would be a pain in the ass i think, should think when to call it for the state controll.
+
+
