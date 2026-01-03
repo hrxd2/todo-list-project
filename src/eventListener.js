@@ -44,6 +44,12 @@ projectArray.forEach(item => {
 return projectId;
 }
 
+//localStorage updatition.
+function setStorage(){
+    localStorage.setItem("allTasks", JSON.stringify(getTaskArray()));
+    localStorage.setItem("projects", JSON.stringify(getProjectArray()));
+}
+
 //main side render of project tasks.
 function projectRender(id){
 
@@ -71,6 +77,9 @@ function mainListener(){
             const id = e.target.dataset.uid;
             console.log(id);
             removeTasks(id);
+
+            setStorage();
+
             clearDisplay();            
 
             updateMain();
@@ -81,6 +90,7 @@ function mainListener(){
             const title = e.target.dataset.title;
             removeProjectTask(id, title);
 
+            setStorage();
             //projectRender(e) id changed to title;
             clearDisplay();
             const prjArray = getProjectArray();
@@ -118,6 +128,9 @@ function mainListener(){
         if(e.target.classList.contains("isDoneBox")){
             const id = e.target.id;
             isDone(id);
+
+            setStorage();
+
             clearDisplay();
             updateMain();
         }
@@ -125,6 +138,9 @@ function mainListener(){
         if(e.target.classList.contains("isDoneBoxFromPrj")){
             const id = e.target.id;
             isDone(id);
+
+            setStorage();
+
             const pId = findId(id);
             projectRender(pId);
         }
@@ -171,6 +187,9 @@ function asideListener(){
             if(!inputVal) return;
 
             takeProjectInput(inputVal);
+
+            setStorage();
+
             populateProjects(projectArray);
             showProjects();
             projectAdd.classList.toggle("project-title-input");
@@ -186,6 +205,9 @@ function asideListener(){
             const id = e.target.dataset.uid;
             clearDisplay();
             removeProject(id);
+
+            setStorage();
+
             populateProjects(projectArray);
             updateMain();
         }
@@ -213,6 +235,9 @@ function dialogListener(){
             clearDisplay();
             updateMain();
             console.log(res);
+
+            setStorage();
+
             closeDialog();
         }
 
@@ -229,6 +254,9 @@ function dialogListener(){
                     item.addTasks(res);
                 }
             });
+
+            setStorage();
+
             projectRender(id);
             showProjects();
             //aside render of subTasks
@@ -243,6 +271,9 @@ function dialogListener(){
             const res = collectData();
             if(!res) return;
             submitEditedTaskMain(id, res);
+
+            setStorage();
+
             clearDisplay();
             updateMain();
             //aside render subtasks.
@@ -268,6 +299,7 @@ function dialogListener(){
           })
 
         //   clearDisplay();
+        setStorage();
          // const id = findId(e);
          // projectRender(id);
         const pId = findId(id);

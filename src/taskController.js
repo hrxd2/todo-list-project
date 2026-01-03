@@ -1,6 +1,6 @@
 import { editTaskDialog, editProjectTaskDialog } from "./populateDialog";
 
-export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, removeProjectTask, getTaskArray, getProjectArray, editAllTask, submitEditedTaskMain, isDone}
+export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, removeProjectTask, getTaskArray, getProjectArray, editAllTask, submitEditedTaskMain, isDone, storagePush}
 
 const taskArray = [];
 const projectArray = [];
@@ -198,6 +198,22 @@ function submitEditedTaskMain(id, res){
     })
   })
 };
+
+function storagePush(data='', pData=''){
+  data.forEach(item => {
+    Object.setPrototypeOf(item, Task.prototype);
+    taskArray.push(item);
+  })
+  pData.forEach(obj => {
+    Object.setPrototypeOf(obj, ProjectTask.prototype);
+    if(obj.tasks.length !== 0){
+      obj.tasks.forEach(item => {
+        Object.setPrototypeOf(item, Task.prototype);
+      })
+    }
+    projectArray.push(obj);
+  })
+}
 
 function getTaskArray(){
   return taskArray;
