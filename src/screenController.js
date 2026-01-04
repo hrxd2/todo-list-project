@@ -1,7 +1,7 @@
 
 export {clearDisplay, populateTasks, populateProjects, initialRender, newElem};
 import { updateMain } from "./eventListener";
-import { getTaskArray, getProjectArray } from "./taskController";
+import { getProjectArray } from "./taskController";
 
 import { format } from "date-fns";
 

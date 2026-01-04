@@ -1,6 +1,6 @@
 import { editTaskDialog, editProjectTaskDialog } from "./populateDialog";
 
-export {Task, takeTodoInput, takeProjectInput, showProjects, showTasks, checkTasks, removeTasks, removeProject, removeProjectTask, getTaskArray, getProjectArray, editAllTask, submitEditedTaskMain, isDone, storagePush}
+export {Task, takeTodoInput, takeProjectInput, removeTasks, removeProject, removeProjectTask, getTaskArray, getProjectArray, editAllTask, submitEditedTaskMain, isDone, storagePush}
 
 const taskArray = [];
 const projectArray = [];
@@ -89,18 +89,6 @@ function takeProjectInput(title){
   projectArray.push(newProject);
 };
 
-function showProjects(){
-  projectArray.forEach(project => console.log(project));
-}
-
-function showTasks(){
-  taskArray.forEach(task => console.log(task));
-}
-
-function checkTasks(){
-  if(!taskArray) return ;
-  showTasks();
-}
 
 function removeTasks(id) {
   let isAlltask = false;
@@ -145,7 +133,6 @@ function editAllTask(id){
   taskArray.forEach(item => {
     if(item.uid === id){
       editAllFlag = true;
-      console.log(item);
       editTaskDialog(item);
     }
   
@@ -153,7 +140,6 @@ function editAllTask(id){
   projectArray.forEach(item => {
     item.tasks.forEach(obj => {
       if(obj.uid === id){
-        console.log(obj);
         editTaskDialog(obj);
       }
     })

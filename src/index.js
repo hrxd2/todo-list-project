@@ -3,7 +3,7 @@ import "./styles.css"
 import "./modal.css"
 import "./hover.css"
 
-import { takeTodoInput,takeProjectInput, showProjects, getProjectArray, Task, isDone, getTaskArray, storagePush } from "./taskController.js";
+import { takeTodoInput,takeProjectInput, getProjectArray, Task, storagePush } from "./taskController.js";
 
 import { initialRender } from "./screenController.js";
 import {asideListener, dialogListener, mainListener } from "./eventListener.js";
@@ -81,7 +81,6 @@ if(!localStorage.getItem("allTasks")){
 }
 
 initialRender();
-showProjects();
 asideListener();
 mainListener();
 dialogListener();

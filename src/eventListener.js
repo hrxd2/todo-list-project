@@ -1,7 +1,7 @@
 import { closeDialog, collectData, showDialog } from "./modals";
-import { allTaskDialog, editTaskDialog, projectTaskDialog } from "./populateDialog";
+import { allTaskDialog, projectTaskDialog } from "./populateDialog";
 import { clearDisplay, populateProjects, populateTasks} from "./screenController";
-import { editAllTask, getProjectArray, getTaskArray, isDone, removeProject, removeProjectTask, removeTasks, showProjects, submitEditedTaskMain, takeProjectInput, takeTodoInput, Task} from "./taskController";
+import { editAllTask, getProjectArray, getTaskArray, isDone, removeProject, removeProjectTask, removeTasks, submitEditedTaskMain, takeProjectInput, takeTodoInput} from "./taskController";
 
 export {mainListener, asideListener, dialogListener, updateMain}
 
@@ -10,7 +10,6 @@ const sectionTitle = document.querySelector(".section-title");
 
 // main side render of all tasks.
 function updateMain(){
-    console.log(getTaskArray());
     const mappedTasks = [];
 
     sectionTitle.textContent = 'All Tasks';
@@ -18,20 +17,16 @@ function updateMain(){
 
     // getTaskArray().forEach(item => populateTasks(item));
 
-    console.log(projectArray);
-
     projectArray.forEach(item => {
         item.tasks.forEach(obj => {
               mappedTasks.push(obj);
         })
     });
 
-    console.log(mappedTasks);
     mappedTasks.forEach(item => populateTasks(item));
 }
 
 function findId(id){
-// const id = e.target.dataset.uid;
 let projectId;
 
 projectArray.forEach(item => {
@@ -75,7 +70,6 @@ function mainListener(){
     main.addEventListener("click", e => {
         if(e.target.classList.contains("delete-btn")){
             const id = e.target.dataset.uid;
-            console.log(id);
             removeTasks(id);
 
             setStorage();
@@ -91,7 +85,7 @@ function mainListener(){
             removeProjectTask(id, title);
 
             setStorage();
-            //projectRender(e) id changed to title;
+
             clearDisplay();
             const prjArray = getProjectArray();
 
@@ -191,7 +185,6 @@ function asideListener(){
             setStorage();
 
             populateProjects(projectArray);
-            showProjects();
             projectAdd.classList.toggle("project-title-input");
         };
 
@@ -226,7 +219,6 @@ function dialogListener(){
         }
         
         if(e.target.classList.contains("submit-task-btn")){
-            console.log('alltasks out')
 
             const res = collectData();
             if(!res)return;
@@ -234,7 +226,6 @@ function dialogListener(){
             takeTodoInput(res);
             clearDisplay();
             updateMain();
-            console.log(res);
 
             setStorage();
 
@@ -242,7 +233,6 @@ function dialogListener(){
         }
 
         if(e.target.classList.contains("submit-project-task-btn")){
-            console.log('projecttask out');
 
             const id = e.target.dataset.uid;
 
@@ -258,14 +248,12 @@ function dialogListener(){
             setStorage();
 
             projectRender(id);
-            showProjects();
             //aside render of subTasks
             populateProjects(projectArray);
             closeDialog();
         }
 
         if(e.target.classList.contains("submit-edit-btn")){
-            console.log('edited');
 
             const id = e.target.dataset.uid;
             const res = collectData();
@@ -276,15 +264,13 @@ function dialogListener(){
 
             clearDisplay();
             updateMain();
-            //aside render subtasks.
+            //aside render subTasks.
             populateProjects(projectArray);
 
             closeDialog();
         }
 
         if(e.target.classList.contains("submit-prj-edit-btn")){
-          console.log("sub edit task done");
-
 
           const id = e.target.dataset.uid;
           const res = collectData();
@@ -298,10 +284,7 @@ function dialogListener(){
             })
           })
 
-        //   clearDisplay();
         setStorage();
-         // const id = findId(e);
-         // projectRender(id);
         const pId = findId(id);
         
         projectRender(pId);
